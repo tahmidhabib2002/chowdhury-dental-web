@@ -150,11 +150,16 @@ p {
 }
 
 .clinic-name {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: hsl(var(--primary-color));
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  
+  background: linear-gradient(90deg, #00B4DB, #0083B0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 .nav-menu {
     display: flex;
