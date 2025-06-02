@@ -1,0 +1,61 @@
+
+
+🦷
+I want to create a modern, beautifully designed, and fully responsive website for my dental clinic, using only HTML, CSS, and JavaScript — no backend or database is required.
+The website will present detailed information about our clinic, doctors, services, and include photos, contact options, and social media links.
+
+✅ Key Requirements:
+Technology:
+Use only HTML, CSS, and JavaScript
+Keep HTML and CSS in separate files
+Clean code and mobile-friendly layout
+No backend or database needed (purely static website)
+Content & Structure:
+A beautiful landing/homepage with eye-catching design
+Display our clinic logo, banner image, and introductory text
+A section to showcase two main doctors with:
+Names:
+Dr. Md. Habibur Rahman Chowdhury
+Dr. Tahmid Habib
+Their photos and degrees (styled in a clean and professional layout)
+Communication & Contact:
+A floating message icon fixed on the screen (bottom-right or bottom-left)
+When clicked, it will show WhatsApp and Messenger logos
+These will link directly to our clinic’s WhatsApp and Messenger chat pages
+A section or icons with social media links (e.g., Facebook, Instagram, etc.)
+Design:
+Must be very attractive, with modern fonts, colors, and layout
+Include multiple images related to dental care for visual engagement
+Website must be visually impressive on both desktop and mobile devices
+Upon visiting, users should be immediately drawn in by the professional and appealing design
+Editing & Hosting:
+I should be able to edit the HTML content easily (like updating text or images)
+The website must run directly from a mobile device, using apps like Acode or KSWEB
+The website will be hosted on GitHub Pages, so keep all files light and simple to manage
+
+📁 Suggested Folder Structure:
+/dental-clinic
+├── index.html         ← Main HTML file (easy to edit content)
+├── style.css          ← All styles and layout design
+├── script.js          ← Optional for messaging icon toggle
+├── assets/
+│   ├── logo.png       ← Clinic logo
+│   ├── doctor1.jpg    ← Dr. Habibur’s photo
+│   ├── doctor2.jpg    ← Dr. Tahmid’s photo
+│   └── other-images/  ← Optional dental images for visual design
+
+
+💬 Floating Messaging Icon (Functionality Idea):
+A button fixed at the bottom corner
+On click, shows two options:
+WhatsApp icon → opens WhatsApp chat link
+Messenger icon → opens Facebook Messenger chat link
+
+🌐 Social Media Section:
+Icons that link to clinic’s Facebook, Instagram, or YouTube profiles
+Clean layout with hover effects and proper spacing
+
+🚫 Not Required:
+No appointment booking form
+No database or backend system
+
