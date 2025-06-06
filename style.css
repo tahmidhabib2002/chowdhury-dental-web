@@ -13,7 +13,20 @@
     --text-muted: 210 9% 65%; /* #90A4AE */
     --border-light: 210 14% 89%; /* #CFD8DC */
     --shadow: 210 14% 7%; /* rgba(38, 50, 56, 0.1) */
-    
+  body {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+.subtitle {
+  font-weight: 300;
+}
+
+
     /* Typography */
     --font-primary: 'Inter', sans-serif;
     --font-display: 'Playfair Display', serif;
@@ -152,7 +165,7 @@ p {
 
 .clinic-name {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   text-align: center;
   
@@ -399,6 +412,17 @@ section {
     gap: 2rem;
 }
 
+
+.service-price {
+    font-weight: 600;
+    color: hsl(var(--primary));
+    font-size: var(--font-size-lg);
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: hsl(var(--background-gray));
+    border-radius: var(--radius-md);
+}
+
 .service-card {
     background: hsl(var(--background));
     padding: 2rem;
@@ -439,6 +463,44 @@ section {
 .service-description {
     font-size: 0.95rem;
     line-height: 1.6;
+    
+}
+
+.services-grid li{
+     text-align: left;
+}
+.emergency-services {
+    background: linear-gradient(135deg, hsl(var(--error)) 0%, hsl(var(--accent)) 100%);
+    color: rgb(226, 10, 10);
+    background-color: black;
+}
+
+.emergency-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+}
+
+.emergency-icon {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emergency-content h3 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.emergency-contact {
+    margin-top: 1rem;
+    font-size: var(--font-size-lg);
 }
 
 /* Gallery Section */
