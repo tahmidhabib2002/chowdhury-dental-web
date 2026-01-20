@@ -123,3 +123,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+// =========================================
+// HERO SLIDER SCRIPT (AUTO PLAY)
+// =========================================
+document.addEventListener("DOMContentLoaded", function() {
+    let slides = document.querySelectorAll(".slide");
+    let dots = document.querySelectorAll(".dot");
+    let currentSlide = 0;
+    const slideInterval = 3000; // ৩০০০ মিলি সেকেন্ড = ৩ সেকেন্ড
+
+    function nextSlide() {
+        // বর্তমান স্লাইড এবং ডট থেকে active ক্লাস সরানো
+        slides[currentSlide].classList.remove("active");
+        dots[currentSlide].classList.remove("active");
+
+        // পরের স্লাইডে যাওয়া (লুপ আকারে)
+        currentSlide = (currentSlide + 1) % slides.length;
+
+        // নতুন স্লাইড এবং ডটে active ক্লাস যোগ করা
+        slides[currentSlide].classList.add("active");
+        dots[currentSlide].classList.add("active");
+    }
+
+    // প্রতি ৩ সেকেন্ড পর পর nextSlide ফাংশন কল হবে
+    setInterval(nextSlide, slideInterval);
+});

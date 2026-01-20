@@ -1,0 +1,35 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /cgi-bin/
+
+Sitemap: https://chowdhurydental.online/sitemap.xml
+Sitemap: https://chowdhurydental.online/sitemap-bn.xml
+
+# Google-specific
+User-agent: Googlebot
+Allow: /
+Disallow: /search
+
+# Bing-specific
+User-agent: bingbot
+Allow: /
+Disallow: /search
+
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+Crawl-delay: 2

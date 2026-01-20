@@ -2195,3 +2195,134 @@ p {
         min-height: 250px;
     }
 }
+/* =========================================
+   PREMIUM HERO SLIDER STYLES
+   ========================================= */
+.premium-slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* মোবাইলের জন্য সাইজ কন্ট্রোল */
+    height: 400px;    /* স্লাইডারের উচ্চতা */
+    border-radius: 20px; /* কোণাগুলো গোল করার জন্য */
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* সুন্দর ছায়া */
+    z-index: 2;
+    background: #fff;
+    border: 5px solid #fff; /* সাদা বর্ডার */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* শুরুতে দেখা যাবে না */
+    transition: opacity 1s ease-in-out; /* স্মুথ ফেইড ইফেক্ট */
+}
+
+.slide.active {
+    opacity: 1; /* শুধু একটিভ স্লাইড দেখা যাবে */
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ছবি চ্যাপ্টা হবে না */
+    animation: zoomEffect 6s infinite linear; /* জুম এনিমেশন */
+}
+
+/* জুম এনিমেশন কিফ্রেম */
+@keyframes zoomEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+/* নিচের গোল ডট বাটন */
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background-color: #00bcd4; /* একটিভ কালার */
+    width: 25px; /* একটু লম্বা হবে */
+    border-radius: 5px;
+}
+
+/* মোবাইলের জন্য সাইজ ঠিক করা */
+@media (max-width: 768px) {
+    .premium-slider {
+        height: 300px;
+        margin: 0 auto; /* মাঝখানে থাকবে */
+    }
+}
+/* =========================================
+   MODERN MARQUEE GALLERY STYLE
+   ========================================= */
+
+.marquee-wrapper {
+    overflow: hidden; /* স্ক্রিনের বাইরের অংশ লুকাবে */
+    white-space: nowrap; /* সব এক লাইনে থাকবে */
+    position: relative;
+    padding: 30px 0;
+    background: #f9fbfd; /* হালকা ব্যাকগ্রাউন্ড */
+}
+
+.marquee-content {
+    display: inline-flex; /* এক লাইনে আনার জন্য */
+    gap: 20px; /* ছবিগুলোর মাঝখানের ফাঁকা */
+    animation: scrollGallery 40s linear infinite; /* ৪০ সেকেন্ডে একবার ঘুরবে */
+}
+
+/* প্রতিটি ছবির বক্স */
+.gallery-card {
+    flex-shrink: 0;
+    width: 300px; /* ছবির চওড়া */
+    height: 200px; /* ছবির উচ্চতা */
+    border-radius: 15px; /* কোণা গোল */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 3px solid #fff;
+}
+
+/* ছবির সাইজ ঠিক রাখা */
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ছবি চ্যাপ্টা হবে না */
+    transition: transform 0.3s ease;
+}
+
+/* হোভার করলে ছবি একটু জুম হবে */
+.gallery-card:hover img {
+    transform: scale(1.1);
+}
+
+/* এনিমেশন কি-ফ্রেম (ডান থেকে বামে চলা) */
+@keyframes scrollGallery {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* মোট দৈর্ঘ্যের অর্ধেক সরবে (যেহেতু ডাবল ছবি আছে) */
+}
+
+/* মোবাইলের জন্য সাইজ এডজাস্টমেন্ট */
+@media (max-width: 600px) {
+    .gallery-card {
+        width: 250px;
+        height: 160px;
+    }
+}
