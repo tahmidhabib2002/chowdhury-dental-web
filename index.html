@@ -1,1187 +1,4167 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* CSS Custom Properties */
+:root {
+    /* Colors */
+    --primary-color: 210 85% 50%; /* #1976D2 */
+    --primary-dark: 210 85% 45%; /* #1565C0 */
+    --secondary-color: 195 100% 50%; /* #00BCD4 */
+    --accent-color: 140 65% 55%; /* #4CAF50 */
+    --background: 210 11% 98%; /* #F5F7FA */
+    --background-alt: 210 17% 95%; /* #E8EAF6 */
+    --surface: 0 0% 100%; /* #FFFFFF */
+    --text-primary: 210 11% 15%; /* #263238 */
+    --text-secondary: 210 7% 46%; /* #607D8B */
+    --text-muted: 210 9% 65%; /* #90A4AE */
+    --border-light: 210 14% 89%; /* #CFD8DC */
+    --shadow: 210 14% 7%; /* rgba(38, 50, 56, 0.1) */
+    --error: 0 68% 61%; /* Error color */
     
-    <meta property="og:title" content="Chowdhury Dental - Best Dental Clinic in Lalmohan" />
-    <meta property="og:description" content="Get expert dental care in Lalmohan, Bhola from experienced dentists at Chowdhury Dental." />
-    <meta property="og:url" content="http://chowdhurydental.online/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png" />
-    <meta name="robots" content="index, follow">
-
-    <title>Chowdhury Dental - লালমোহন এবং ভোলা জেলার সেরা ডেন্টাল ক্লিনিক</title>
-    <meta name="description" content="Chowdhury Dental, লালমোহন, ভোলা - আধুনিক ডেন্টাল সেবা প্রদান করেন মোঃ হাবিবুর রহমান এবং তাহমিদ হাবিব।">
+    /* Typography */
+    --font-primary: 'Inter', sans-serif;
+    --font-display: 'Playfair Display', serif;
     
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="shortcut icon" href="https://chowdhurydental.online/assets/favicon.ico" type="image/x-icon">
+    /* Spacing */
+    --container-padding: 1rem;
+    --section-padding: 4rem 0;
+    --border-radius: 0.5rem;
+    --border-radius-lg: 1rem;
+    
+    /* Font sizes */
+    --font-size-lg: 1.25rem;
+    
+    /* Transitions */
+    --transition: all 0.3s ease;
+    --transition-fast: all 0.2s ease;
+    
+    /* Z-index layers */
+    --z-floating: 1000;
+    --z-navbar: 100;
+    --z-dropdown: 50;
+}
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Dentist",
-      "name": "Chowdhury Dental",
-      "alternateName": "Chowdhury Dental",
-      "image": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "মোল্লা জামে মসজিদের ২য় তলা, আরজু হোটেলের সামনে",
-        "addressLocality": "লালমোহন",
-        "addressRegion": "ভোলা",
-        "addressCountry": "BD"
-      },
-      "telephone": "+8801608580002",
-      "additionalTelephone": "+8801715586670",
-      "url": "https://chowdhurydental.online"
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Noto Sans Bengali', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: hsl(var(--text-primary));
+    background-color: hsl(var(--background));
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
+
+p {
+    margin-bottom: 1rem;
+    color: hsl(var(--text-secondary));
+}
+
+/* Container */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* =========================================
+   TOP OFFER BAR STYLES
+   ========================================= */
+.top-offer-bar {
+    background: linear-gradient(90deg, #0091EA, #00B0FF);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.offer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Noto Sans Bengali', sans-serif;
+    font-size: 15px;
+}
+
+.offer-content span {
+    display: inline-block;
+    font-weight: 600;
+    color: #ffffff;
+    animation: heartbeatGlow 2s infinite ease-in-out;
+}
+
+.highlight-text {
+    background-color: #fff;
+    color: #0091EA;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 800;
+    margin: 0 5px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.phone-link {
+    color: #FFEB3B;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.phone-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.fa-bullhorn {
+    color: #FFEB3B;
+    animation: shake 3s infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30% { transform: rotate(-10deg); }
+    20%, 40% { transform: rotate(10deg); }
+}
+
+@keyframes heartbeatGlow {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 0 transparent;
     }
-    </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Primary Meta Tags -->
-    <title>Chowdhury Dental - লালমোহন, ভোলার সেরা ডেন্টাল ক্লিনিক | ৩০+ বছরের অভিজ্ঞতা</title>
-    <meta name="title" content="Chowdhury Dental - লালমোহন, ভোলার সেরা ডেন্টাল ক্লিনিক | ৩০+ বছরের অভিজ্ঞতা">
-    <meta name="description" content="ভোলা জেলার #1 ডেন্টাল ক্লিনিক।  হাবিবুর রহমান ও তাহমিদ হাবিবের তত্ত্বাবধানে আধুনিক ডেন্টাল চিকিৎসা। ১ ঘন্টায় রুট ক্যানেল চিকিৎসা, দাঁত সাদাকরণ, ব্যথামুক্ত দাঁত তোলা। ফোন: ০১৬০৮-৫৮০০০২">
-    <meta name="keywords" content="ডেন্টাল ক্লিনিক লালমোহন, ভোলা ডেন্টিস্ট, দাঁতের ডাক্তার ভোলা, Chowdhury Dental, লালমোহন ডেন্টিস্ট, বেস্ট ডেন্টাল ক্লিনিক ভোলা, দাঁত তোলা ভোলা, রুট ক্যানেল ট্রিটমেন্ট লালমোহন, দাঁত সাদাকরণ ভোলা,  হাবিবুর রহমান চৌধুরী, তাহমিদ হাবিব, টিথ হোয়াইটেনিং ভোলা, ডেন্টাল সার্জারি লালমোহন, জরুরি ডেন্টাল সার্ভিস ভোলা">
-    <meta name="author" content="Chowdhury Dental">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
-    <!-- Google / Search Engine Tags -->
-    <meta itemprop="name" content="Chowdhury Dental - লালমোহন, ভোলার সেরা ডেন্টাল ক্লিনিক">
-    <meta itemprop="description" content="৩০+ বছরের অভিজ্ঞতা, আধুনিক প্রযুক্তি, ব্যথামুক্ত চিকিৎসা। ভোলা জেলার সবচেয়ে বিশ্বস্ত ডেন্টাল ক্লিনিক।">
-    <meta itemprop="image" content="https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://chowdhurydental.online/">
-    <meta property="og:title" content="Chowdhury Dental - লালমোহন, ভোলার সেরা ডেন্টাল ক্লিনিক">
-    <meta property="og:description" content="ভোলা জেলার #1 ডেন্টাল ক্লিনিক। ৩০+ বছরের অভিজ্ঞ ডেন্টিস্ট, আধুনিক যন্ত্রপাতি, ব্যথামুক্ত চিকিৎসা।">
-    <meta property="og:image" content="https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="bn_BD">
-    <meta property="og:site_name" content="Chowdhury Dental">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://chowdhurydental.online/">
-    <meta property="twitter:title" content="Chowdhury Dental - লালমোহন, ভোলার সেরা ডেন্টাল ক্লিনিক">
-    <meta property="twitter:description" content="ভোলা জেলার #1 ডেন্টাল ক্লিনিক। ব্যথামুক্ত ডেন্টাল চিকিৎসা, আধুনিক প্রযুক্তি, ৩০+ বছরের অভিজ্ঞতা।">
-    <meta property="twitter:image" content="https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://chowdhurydental.online/">
-
-    <!-- Language Tags -->
-    <meta http-equiv="content-language" content="bn-BD">
-    <meta name="language" content="Bengali">
-    <meta name="locale" content="bn_BD">
-
-    <!-- Geo Targeting -->
-    <meta name="geo.region" content="BD-7">
-    <meta name="geo.placename" content="Lalmohan, Bhola">
-    <meta name="geo.position" content="22.3487;90.7303">
-    <meta name="ICBM" content="22.3487, 90.7303">
-
-    <!-- Business Information -->
-    <meta name="business:contact_data:street_address" content="মোল্লা জামে মসজিদের ২য় তলা, আরজু হোটেলের সামনে">
-    <meta name="business:contact_data:locality" content="লালমোহন">
-    <meta name="business:contact_data:region" content="ভোলা">
-    <meta name="business:contact_data:postal_code" content="8330">
-    <meta name="business:contact_data:country_name" content="Bangladesh">
-    <meta name="business:contact_data:email" content="info.chowdhurydental@gmail.com">
-    <meta name="business:contact_data:phone_number" content="+8801608580002">
-    <meta name="business:contact_data:phone_number" content="+8801715586670">
-
-    <!-- Sitemap -->
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Dentist",
-          "@id": "https://chowdhurydental.online/#dentist",
-          "name": "Chowdhury Dental",
-          "alternateName": "Chowdhury Dental",
-          "description": "লালমোহন ও ভোলা জেলার সেরা ডেন্টাল ক্লিনিক, ৩০+ বছরের অভিজ্ঞতা, আধুনিক ডেন্টাল চিকিৎসা",
-          "url": "https://chowdhurydental.online",
-          "telephone": "+8801608580002",
-          "additionalTelephone": "+8801715586670",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "মোল্লা জামে মসজিদের ২য় তলা, আরজু হোটেলের সামনে",
-            "addressLocality": "লালমোহন",
-            "addressRegion": "ভোলা",
-            "addressCountry": "Bangladesh",
-            "postalCode": "8330"
-          },
-          "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-              "@type": "GeoCoordinates",
-              "latitude": 22.3487,
-              "longitude": 90.7303
-            },
-            "geoRadius": "50000"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 22.3487,
-            "longitude": 90.7303
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-              "opens": "10:00",
-              "closes": "13:00"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-              "opens": "16:00",
-              "closes": "20:00"
-            }
-          ],
-          "priceRange": "৳500 - ৳40,000",
-          "image": [
-            "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
-            "https://i.postimg.cc/Bn20D0T6/young-female-patient-visiting-dentist-office.jpg",
-            "https://i.postimg.cc/BnnyHzrD/Untitled-design-20250602-134329-0000.png"
-          ],
-          "sameAs": [
-            "https://www.facebook.com/Habibur.Rahman.Chowdhury.76"
-          ],
-          "medicalSpecialty": ["Dentistry", "DentalSurgery", "CosmeticDentistry"]
-        },
-        {
-          "@type": "MedicalBusiness",
-          "@id": "https://chowdhurydental.online/#business",
-          "name": "Chowdhury Dental",
-          "description": "ভোলা জেলার সেরা ডেন্টাল ক্লিনিক, ৩০ বছরের অভিজ্ঞতা, পেইনলেস ট্রিটমেন্ট",
-          "url": "https://chowdhurydental.online",
-          "telephone": "+8801608580002",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "মোল্লা জামে মসজিদের ২য় তলা, আরজু হোটেলের সামনে",
-            "addressLocality": "লালমোহন",
-            "addressRegion": "ভোলা",
-            "addressCountry": "Bangladesh"
-          },
-          "priceRange": "৳",
-          "openingHours": "Mon-Sat 10:00-13:00, 16:00-20:00",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 22.3487,
-            "longitude": 90.7303
-          },
-          "areaServed": ["Lalmohan", "Bhola", "Barishal", "Bangladesh"],
-          "medicalSpecialty": "Dentistry"
-        },
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://chowdhurydental.online/#localbusiness",
-          "name": "Chowdhury Dental - Best Dentist in Lalmohan, Bhola",
-          "image": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
-          "@id": "https://chowdhurydental.online",
-          "url": "https://chowdhurydental.online",
-          "telephone": "+8801608580002",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "মোল্লা জামে মসজিদের ২য় তলা, আরজু হোটেলের সামনে",
-            "addressLocality": "লালমোহন",
-            "addressRegion": "ভোলা",
-            "postalCode": "8330",
-            "addressCountry": "BD"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 22.3487,
-            "longitude": 90.7303
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-              ],
-              "opens": "10:00",
-              "closes": "13:00"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-              ],
-              "opens": "16:00",
-              "closes": "20:00"
-            }
-          ],
-          "sameAs": [
-            "https://www.facebook.com/Habibur.Rahman.Chowdhury.76"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://chowdhurydental.online/#website",
-          "url": "https://chowdhurydental.online",
-          "name": "Chowdhury Dental - Best Dental Clinic in Lalmohan, Bhola",
-          "description": "লালমোহন ও ভোলা জেলার সেরা ডেন্টাল ক্লিনিক। আধুনিক যন্ত্রপাতি ও অভিজ্ঞ ডাক্তারদের তত্ত্বাবধানে ব্যথামুক্ত চিকিৎসা",
-          "publisher": {
-            "@id": "https://chowdhurydental.online/#dentist"
-          },
-          "potentialAction": [
-            {
-              "@type": "SearchAction",
-              "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://chowdhurydental.online/search?q={search_term_string}"
-              },
-              "query-input": "required name=search_term_string"
-            }
-          ],
-          "inLanguage": "bn-BD"
-        },
-        {
-          "@type": "BreadcrumbList",
-          "@id": "https://chowdhurydental.online/#breadcrumb",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "হোম",
-              "item": "https://chowdhurydental.online"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "আমাদের সম্পর্কে",
-              "item": "https://chowdhurydental.online/#about"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "ডাক্তারগণ",
-              "item": "https://chowdhurydental.online/#doctors"
-            },
-            {
-              "@type": "ListItem",
-              "position": 4,
-              "name": "সেবাসমূহ",
-              "item": "https://chowdhurydental.online/#services"
-            },
-            {
-              "@type": "ListItem",
-              "position": 5,
-              "name": "যোগাযোগ",
-              "item": "https://chowdhurydental.online/#contact"
-            }
-          ]
-        }
-      ]
+    50% {
+        transform: scale(1.05);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 215, 0, 0.6);
     }
-    </script>
-
-    <!-- FAQ Schema for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Chowdhury Dental এর ঠিকানা কোথায়?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Chowdhury Dental লালমোহন, ভোলা জেলায় অবস্থিত। ঠিকানা: মোল্লা জামে মসজিদের ২য় তলা, আরজু হোটেলের সামনে, সদর রোড, লালমোহন,লালমোহন-৮৩৩০ ,  ভোলা।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Chowdhury Dental এর ফোন নম্বর কী?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Chowdhury Dental এর ফোন নম্বর: ০১৬০৮-৫৮০০০২ এবং ০১৭১৫-৫৮৬৬৭০। জরুরি প্রয়োজনে ২৪/৭ কল করতে পারেন।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Chowdhury Dental এ কোন ধরনের সেবা পাওয়া যায়?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Chowdhury Dental এ সাধারণ দাঁতের চিকিৎসা, ১ ঘন্টায় রুট ক্যানেল, দাঁত সাদাকরণ, দাঁত তোলা, সার্জারির মাধ্যমে দাঁত তোলা, জিরকোনিয়া ক্রাউন , পরসেলিন ক্রাউন ও ব্রিজ, মাড়ির চিকিৎসা, শিশুদের ডেন্টাল কেয়ারসহ সকল ধরনের আধুনিক ডেন্টাল সেবা পাওয়া যায়।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Chowdhury Dental এর ডাক্তারগণ কত বছরের অভিজ্ঞ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Chowdhury Dental এর প্রধান ডেন্টিস্ট  হাবিবুর রহমান চৌধুরী ৩০+ বছরের অভিজ্ঞতা সম্পন্ন। তাহমিদ হাবিব স্মাইল ডিজাইনিং বিশেষজ্ঞ।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Chowdhury Dental এর সময়সূচী কী?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Chowdhury Dental সকাল ১০টা থেকে দুপুর ১টা এবং বিকাল ৪টা থেকে রাত ৮টা পর্যন্ত খোলা থাকে। শনি থেকে শুক্রবার পর্যন্ত খোলা।"
-          }
-        }
-      ]
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 0 transparent;
     }
-    </script>
+}
 
-    <!-- Reviews Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "AggregateRating",
-      "itemReviewed": {
-        "@type": "Dentist",
-        "name": "Chowdhury Dental",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "মোল্লা জামে মসজিদের ২য় তলা, আরজু হোটেলের সামনে",
-          "addressLocality": "লালমোহন",
-          "addressRegion": "ভোলা",
-          "addressCountry": "Bangladesh"
-        }
-      },
-      "ratingValue": "4.8",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "127",
-      "reviewCount": "127"
+/* =========================================
+   NAVBAR STYLES
+   ========================================= */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: 0.3s;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo-wrapper img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #FFC107;
+    transition: 0.3s;
+}
+
+.nav-logo:hover .logo-wrapper img {
+    transform: rotate(10deg);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.brand-text .chowdhury {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1976D2;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.brand-text .dental {
+    font-size: 16px;
+    font-weight: 600;
+    color: #FF9800;
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #37474F;
+    text-decoration: none;
+    position: relative;
+    padding: 5px 0;
+    transition: 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #1976D2;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #1976D2;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, #1976D2, #0288D1);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    background: #FF9800;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bar {
+    width: 28px;
+    height: 3px;
+    background-color: #1976D2;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/* =========================================
+   HERO SECTION STYLES
+   ========================================= */
+.hero {
+    background: linear-gradient(135deg, #E3F2FD 0%, #FFFFFF 100%);
+    position: relative;
+    padding: 150px 0 60px 0;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    font-family: 'Hind Siliguri', sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.welcome-badge {
+    background: #E1F5FE;
+    color: #0288D1;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 25px;
+    display: inline-block;
+    margin-bottom: 15px;
+    border: 1px solid #B3E5FC;
+}
+
+.hero-title {
+    font-size: 48px;
+    line-height: 1.2;
+    color: #263238;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.highlight-word {
+    color: #01579B;
+    position: relative;
+    z-index: 1;
+}
+
+.highlight-word::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #FFEB3B;
+    z-index: -1;
+    opacity: 0.6;
+    border-radius: 5px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: #546E7A;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #1976D2, #0288D1);
+    border: none;
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: hsl(var(--primary-color));
+    border: 2px solid hsl(var(--primary-color));
+}
+
+.btn-secondary:hover {
+    background: hsl(var(--primary-color));
+    color: white;
+    transform: translateY(-2px);
+}
+
+.pulse-btn {
+    animation: btnPulse 2s infinite;
+}
+
+@keyframes btnPulse {
+    0% { box-shadow: 0 0 0 0 rgba(25, 118, 210, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(25, 118, 210, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(25, 118, 210, 0); }
+}
+
+.trust-badges {
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #CFD8DC;
+}
+
+.badge-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #455A64;
+    font-size: 14px;
+}
+
+.badge-item i {
+    color: #00C853;
+    font-size: 18px;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    text-align: center;
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 20px 20px 0px rgba(25, 118, 210, 0.1);
+    z-index: 2;
+    position: relative;
+}
+
+.floating-img {
+    animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.floating-card {
+    position: absolute;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-weight: bold;
+    color: #0288D1;
+    font-family: 'Hind Siliguri', sans-serif;
+    z-index: 3;
+    top: 40px;
+    left: -20px;
+    animation: floatCard 5s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+}
+
+/* =========================================
+   COVERFLOW EFFECT STYLES - FIXED VERSION
+   ========================================= */
+.coverflow-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px; /* ফিক্সড উচ্চতা যোগ করুন */
+}
+
+.coverflow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    height: 420px; /* উচ্চতা বাড়ানো হয়েছে */
+    position: relative;
+    margin-bottom: 40px;
+    min-width: 100%;
+}
+
+.gallery-card {
+    position: absolute;
+    width: 320px; /* একটু বড় করা হলো */
+    height: 380px; /* হাইট বাড়ানো হলো ক্যাপশনের জন্য */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    background: white;
+    border: none;
+    will-change: transform, opacity; /* পারফরম্যান্সের জন্য */
+    backface-visibility: hidden; /* 3D ইফেক্টের জন্য */
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 220px; /* ছবির হাইট নির্দিষ্ট */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.image-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1976D2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+}
+
+.card-caption {
+    padding: 20px;
+    background: white;
+    height: 160px; /* ক্যাপশনের হাইট নির্দিষ্ট */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* টেক্সট ওভারফ্লো কন্ট্রোল */
+}
+
+.caption-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0D47A1;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    height: 2.6em; /* ২ লাইনের জন্য */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.caption-desc {
+    font-size: 14px;
+    color: #546E7A;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    height: 4.5em; /* ৩ লাইনের জন্য */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.caption-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.tag {
+    background: rgba(25, 118, 210, 0.1);
+    color: #1976D2;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tag:hover {
+    background: #1976D2;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* কার্ড হোভার ইফেক্ট */
+.gallery-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.gallery-card:hover {
+    box-shadow: 0 20px 40px rgba(25, 118, 210, 0.2);
+}
+
+/* Active card highlight */
+.gallery-card.active {
+    box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
+    border: 2px solid #FF9800;
+}
+
+.gallery-card.active .card-caption {
+    background: linear-gradient(to bottom, #FFF3E0, white);
+}
+
+/* কভারফ্লো কন্ট্রোলস */
+.coverflow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.coverflow-prev,
+.coverflow-next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+    position: relative;
+    z-index: 20;
+}
+
+.coverflow-prev:hover,
+.coverflow-next:hover {
+    background: #FF9800;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+}
+
+.coverflow-prev:active,
+.coverflow-next:active {
+    transform: scale(0.95);
+}
+
+.coverflow-indicator {
+    background: rgba(25, 118, 210, 0.1);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 600;
+    color: #1976D2;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    position: relative;
+    z-index: 20;
+}
+
+.current-slide {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.total-slides {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+//* =========================================
+   COMPLETE COVERFLOW FIX FOR ALL DEVICES
+   ========================================= */
+.coverflow-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    overflow: visible !important; /* ওভারফ্লো ভিজিবল রাখা */
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coverflow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    height: 450px; /* ডেস্কটপের জন্য উচ্চতা */
+    position: relative;
+    margin-bottom: 40px;
+    min-width: 100%;
+    overflow: visible !important; /* গুরুত্বপূর্ণ */
+}
+
+.gallery-card {
+    position: absolute;
+    width: 350px; /* ডেস্কটপের জন্য বড় সাইজ */
+    height: 420px; /* উচ্চতা বাড়ানো */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    background: white;
+    border: none;
+    will-change: transform, opacity, z-index;
+    backface-visibility: hidden;
+    z-index: 1; /* ডিফল্ট z-index */
+}
+
+/* সব কার্ড দেখা যাবে - কোন কার্ড লুকানো হবে না */
+.gallery-card:nth-child(n+6) {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 240px; /* ছবির এলাকা বাড়ানো */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.image-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1976D2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.card-caption {
+    padding: 25px;
+    background: white;
+    height: 180px; /* ক্যাপশন এলাকা বাড়ানো */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+}
+
+.caption-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0D47A1;
+    margin-bottom: 12px;
+    line-height: 1.3;
+    height: 2.6em; /* ২ লাইনের জন্য */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+.caption-desc {
+    font-size: 15px;
+    color: #546E7A;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    height: 4.8em; /* ৩ লাইনের জন্য */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    flex-grow: 1;
+}
+
+.caption-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    justify-content: flex-start;
+}
+
+.tag {
+    background: rgba(25, 118, 210, 0.1);
+    color: #1976D2;
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.tag:hover {
+    background: #1976D2;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* কার্ড হোভার ইফেক্ট */
+.gallery-card:hover .card-image img {
+    transform: scale(1.08);
+}
+
+.gallery-card:hover {
+    box-shadow: 0 25px 50px rgba(25, 118, 210, 0.25);
+    transform: translateY(-5px) !important;
+}
+
+/* Active card highlight */
+.gallery-card.active {
+    box-shadow: 0 30px 60px rgba(255, 152, 0, 0.3) !important;
+    border: 3px solid #FF9800 !important;
+    z-index: 1000 !important; /* সর্বোচ্চ z-index */
+}
+
+.gallery-card.active .card-caption {
+    background: linear-gradient(to bottom, #FFF3E0, white);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN FOR ALL DEVICES
+   ========================================= */
+
+/* ল্যাপটপ/ডেস্কটপ (1200px এর বেশি) */
+@media (min-width: 1200px) {
+    .coverflow-wrapper {
+        height: 450px;
     }
-    </script>
-
-    <!-- AI Crawler জন্য বিশেষ ট্যাগ -->
-    <meta name="ai:model" content="ChatGPT, Google Bard, Bing AI">
-    <meta name="ai:content_type" content="medical_business_dental_clinic">
-    <meta name="ai:location" content="Lalmohan, Bhola, Bangladesh">
-    <meta name="ai:expertise" content="dental_surgery, cosmetic_dentistry, root_canal">
-    <meta name="ai:rating" content="4.8/5">
-    <meta name="ai:availability" content="Mon-Sat 10AM-8PM">
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MJPGWWVJ');</script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE6HCDVS28"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-WE6HCDVS28');
-    </script>
     
-    <link rel="stylesheet" href="style.css">
+    .gallery-card {
+        width: 350px;
+        height: 420px;
+    }
     
-</head>
-<body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MJPGWWVJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <div class="top-offer-bar">
-        <div class="offer-content">
-            <i class="fas fa-bullhorn"></i> 
-            <span>
-                সুখবর! ওয়েবসাইট ভিজিটরদের জন্য সকল চিকিৎসায় <strong class="highlight-text">১৫% ছাড়!</strong>
-            </span>
-        </div>
-    </div>
+    .card-image {
+        height: 240px;
+    }
     
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <div class="logo-wrapper">
-                    <img src="https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png" alt="Logo">
-                </div>
-                <div class="brand-text">
-                    <span class="chowdhury">Chowdhury</span>
-                    <span class="dental">Dental</span>
-                </div>
-            </a>
+    .card-caption {
+        height: 180px;
+        padding: 25px;
+    }
+}
 
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link active">হোম</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">আমাদের সম্পর্কে</a></li>
-                <li class="nav-item"><a href="#doctors" class="nav-link">ডাক্তারগণ</a></li>
-                <li class="nav-item"><a href="#services" class="nav-link">সেবাসমূহ</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">যোগাযোগ</a></li>
-            </ul>
-
-            <div class="nav-right">
-                <a href="tel:+8801608580002" class="nav-btn">
-                    <i class="fas fa-phone-alt"></i> <span>01608-580002</span>
-                </a>
-                
-                <div class="hamburger" id="mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <span class="welcome-badge">👋 স্বাগতম Chowdhury Dental এ</span>
-                <h1 class="hero-title">
-                    আপনার সুন্দর হাসি,<br>
-                    <span class="highlight-word">আমাদের দায়িত্ব</span>
-                </h1>
-                <p class="hero-subtitle">
-                    লালমোহন ও ভোলা জেলার অন্যতম সেরা ডেন্টাল ক্লিনিক। আধুনিক যন্ত্রপাতি ও অভিজ্ঞ ডাক্তারদের তত্ত্বাবধানে ব্যথামুক্ত ও নিরাপদ চিকিৎসা সেবা নিন।
-                </p>
-                
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary pulse-btn">অ্যাপয়েন্টমেন্ট নিন <i class="fas fa-calendar-check"></i></a>
-                    <a href="#services" class="btn btn-secondary">সেবাসমূহ দেখুন</a>
-                </div>
-
-                <div class="trust-badges">
-                    <div class="badge-item">
-                        <i class="fas fa-user-md"></i> ৩০+ বছর অভিজ্ঞতা
-                    </div>
-                    <div class="badge-item">
-                        <i class="fas fa-smile"></i> পেইনলেস ট্রিটমেন্ট
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-image-wrapper">
-                <div class="blob-shape"></div>
-                <div class="premium-slider">
-                    <div class="slide active">
-                        <img src="https://i.postimg.cc/MTkkwTGR/s.png" alt="Work 1">
-                    </div>
-                    <div class="slide">
-                        <img src="https://i.postimg.cc/JtVh5Ljs/ja-raka-na-ya-sa-na-ga-la-la-ya-ra-ka-ra-una-(3).png" alt="Work 2">
-                    </div>
-                    <div class="slide">
-                        <img src="https://i.postimg.cc/ZYLDkcWp/ja-raka-na-ya-sa-na-ga-la-la-ya-ra-ka-ra-una-(2).png" alt="Work 3">
-                    </div>
-                    <div class="slide">
-                        <img src="https://i.postimg.cc/fL44sLb9/d.png" alt="Work 4">
-                    </div>
-                    <div class="slide">
-                        <img src="https://i.postimg.cc/DZ19wTWJ/a.png" alt="Work 5">
-                        
-                    </div>
-                    <div class="slide">
-                        <img src="https://i.postimg.cc/QCxLLnhD/IMG20240923120936.jpg" alt="Work 5">
-                        
-                    </div>
-                    <div class="slide">
-                        <img src="https://i.postimg.cc/k5KDDDSL/IMG20260106131453.jpg" alt="Work 5">
-                        
-                    </div>
-
-                    <div class="slider-dots">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                </div>
-                <div class="floating-card card-1">
-                    <i class="fas fa-star"></i> সেরা সেবা
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="facility-showcase">
-    <!-- নতুন মর্ডেন হেডার -->
-    <div class="showcase-header modern-header">
-        <div class="header-badge">
-            <i class="fas fa-star"></i>
-            <span>সাকসেস স্টোরিজ</span>
-        </div>
-        <h2 class="section-title-glow">আমাদের সফল কেইস স্টাডি</h2>
-        <p class="section-subtitle-modern">
-            <span class="highlight-word">রিয়েল রেজাল্টস</span> - প্রতিটি ছবি বলে এককথায় সাফল্যের গল্প
-        </p>
-        <div class="header-stats">
-            <div class="stat-item">
-                <i class="fas fa-smile"></i>
-                <span>১০০০+ সন্তুষ্ট রোগী</span>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-award"></i>
-                <span>৯৫% সাফল্যের হার</span>
-            </div>
-        </div>
-    </div>
-    <br>
+/* ট্যাবলেট ল্যান্ডস্কেপ (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .coverflow-wrapper {
+        height: 420px;
+    }
     
-    <div class="coverflow-container">
-        <div class="coverflow-wrapper">
-            <!-- প্রতিটি ছবির জন্য ক্যাপশন সহ কার্ড -->
-            <!-- ছবি ১: জিরকোনিয়া ক্রাউন -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src="https://i.postimg.cc/MTkkwTGR/s.png" alt="জিরকোনিয়া ক্রাউন">
-        <div class="image-badge">
-            <i class="fas fa-gem"></i> জিরকোনিয়া ক্রাউন
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">জিরকোনিয়া মাল্টি লেয়ার ক্রাউন</h4>
-        <p class="caption-desc">প্রিমিয়াম কোয়ালিটির জিরকোনিয়া ক্রাউন দিয়ে ভাঙ্গা দাঁত সম্পূর্ণ মেরামত করা হয়েছে। প্রাকৃতিক রঙ এবং ১৫ বছর গ্যারান্টি সহ স্থায়ী সমাধান।</p>
-        <div class="caption-tags">
-            <span class="tag">জিরকোনিয়া</span>
-            <span class="tag">১৫ বছর গ্যারান্টি</span>
-            <span class="tag">প্রিমিয়াম</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ২: জিরকোনিয়া -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src="https://i.postimg.cc/DZ19wTWJ/a.png" alt="জিরকোনিয়া">
-        <div class="image-badge">
-            <i class="fas fa-crown"></i> জিরকোনিয়া
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">জিরকোনিয়া সিঙ্গেল লেয়ার ক্রাউন</h4>
-        <p class="caption-desc">জিরকোনিয়ার আরেকটি সফল কেস - দাঁতের প্রাকৃতিক গঠন বজায় রেখে শক্তিশালী ও টেকসই ক্রাউন স্থাপন।</p>
-        <div class="caption-tags">
-            <span class="tag">জিরকোনিয়া</span>
-            <span class="tag">সিঙ্গেল লেয়ার</span>
-            <span class="tag">দাঁত রক্ষা</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ৩: ১১ বছর বাচ্চার মাইনর সার্জারি -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src="https://i.postimg.cc/bvbzCjsV/ja-raka-na-ya-sa-na-ga-la-la-ya-ra-ka-ra-una-(4).png" alt="১১ বছর বাচ্চার মাইনর সার্জারি">
-        <div class="image-badge">
-            <i class="fas fa-child"></i> শিশু সার্জারি
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">১১ বছর বাচ্চার ব্যথামুক্ত মাইনর সার্জারি</h4>
-        <p class="caption-desc">একটি ১১ বছর বয়সী শিশুর দাঁতের মাইনর সার্জারি সম্পূর্ণ ব্যথামুক্তভাবে সম্পন্ন। বিশেষ শিশুবান্ধব পরিবেশে চিকিৎসা দেওয়া হয়েছে।</p>
-        <div class="caption-tags">
-            <span class="tag">শিশু চিকিৎসা</span>
-            <span class="tag">ব্যথামুক্ত</span>
-            <span class="tag">মাইনর সার্জারি</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ৪: ৮ নং দাঁত মাইনর সার্জারি -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src="https://i.postimg.cc/wMTKKbHF/IMG20240923124310.jpg" alt="৮ নং দাঁত মাইনর সার্জারি">
-        <div class="image-badge">
-            <i class="fas fa-tooth"></i> দাঁত সার্জারি
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">৮ নং দাঁতের মাইনর সার্জারি</h4>
-        <p class="caption-desc">৮ নং দাঁতে সংক্রমণ হওয়ায় ব্যথামুক্ত মাইনর সার্জারির মাধ্যমে দাঁত রক্ষা করা হয়েছে। আধুনিক লেসার টেকনোলজি ব্যবহার করা হয়েছে।</p>
-        <div class="caption-tags">
-            <span class="tag">দাঁত রক্ষা</span>
-            <span class="tag">মাইনর সার্জারি</span>
-            <span class="tag">সংক্রমণ চিকিৎসা</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ৫: ৪ জন ডাক্তার একসাথে সার্জারিতে -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src=" https://i.postimg.cc/ZRLkMhkB/IMG20240923120856.jpg " alt="৪ জন ডাক্তার একসাথে সার্জারিতে">
-        <div class="image-badge">
-            <i class="fas fa-user-md"></i> টিম ওয়ার্ক
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">৪ জন বিশেষজ্ঞ ডাক্তারের সমন্বিত সার্জারি</h4>
-        <p class="caption-desc">জটিল কেসের জন্য ৪ জন অভিজ্ঞ ডেন্টাল সার্জনের সমন্বিত টিমওয়ার্ক। বিশেষায়িত চিকিৎসা ও কল্যাণকর ফলাফলের জন্য টিম অ্যাপ্রোচ।</p>
-        <div class="caption-tags">
-            <span class="tag">টিমওয়ার্ক</span>
-            <span class="tag">বিশেষজ্ঞ ডাক্তার</span>
-            <span class="tag">জটিল কেস</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ৬: ৮ নং দাঁত মাইনর সার্জারি -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src=" https://i.postimg.cc/ZYLDkcWp/image.png" alt="৮ নং দাঁত মাইনর সার্জারি">
-        <div class="image-badge">
-            <i class="fas fa-stethoscope"></i> দাঁত সার্জারি
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">৮ নং দাঁতের ব্যথামুক্ত সার্জারি</h4>
-        <p class="caption-desc">আরেকটি ৮ নং দাঁতের সফল সার্জারি কেস। আধুনিক এনেস্থেশিয়ায় সম্পূর্ণ ব্যথামুক্তভাবে সার্জারি সম্পন্ন হয়েছে।</p>
-        <div class="caption-tags">
-            <span class="tag">ব্যথামুক্ত</span>
-            <span class="tag">আধুনিক এনেস্থেশিয়া</span>
-            <span class="tag">সার্জারি</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ৭: উপরনের মাড়ির ১৪টি ক্রাউন লাগানোর আগে -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src="https://i.postimg.cc/fT9CzfLv/IMG20250714112618.jpg" alt="উপরের মাড়ির ১৪টি ক্রাউন লাগানোর আগে">
-        <div class="image-badge">
-            <i class="fas fa-teeth"></i> ক্রাউন লাগানোর আগে
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">উপরের মাড়ির ১৪টি দাঁতে ক্রাউন লাগানোর পূর্বাবস্থা</h4>
-        <p class="caption-desc">সম্পূর্ণ উপরের মাড়ির ১৪টি দাঁতের জন্য ক্রাউন লাগানোর আগের অবস্থা। দাঁতগুলোর প্রাকৃতিক রঙ, আকৃতি ও সারিবদ্ধতা দেখানো হয়েছে।</p>
-        <div class="caption-tags">
-            <span class="tag">প্রাকৃতিক অবস্থা</span>
-            <span class="tag">দাঁতের সারি</span>
-            <span class="tag">সম্পূর্ণ মাড়ি</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ৮: উপরনের মাড়ির ১৪টি ক্রাউন লাগানোর পরে -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src="https://i.postimg.cc/zXsdKPM7/IMG20250707105919.jpg" alt="উপরের মাড়ির ১৪টি ক্রাউন লাগানোর পরে">
-        <div class="image-badge">
-            <i class="fas fa-sparkles"></i> ক্রাউন লাগানোর পরে
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">উপরের মাড়ির ১৪টি দাঁতে ক্রাউন লাগানোর পরের অবস্থা</h4>
-        <p class="caption-desc">সকল ১৪টি দাঁতে ক্রাউন লাগানোর পরের চমৎকার ফলাফল। প্রাকৃতিক রঙের মিল, পারফেক্ট সারিবদ্ধতা এবং উজ্জ্বল হাসি ফিরে পাওয়া গেছে।</p>
-        <div class="caption-tags">
-            <span class="tag">সম্পূর্ণ ট্রিটমেন্ট</span>
-            <span class="tag">সারিবদ্ধ হাসি</span>
-            <span class="tag">স্মাইল ট্রান্সফরমেশন</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ৯: জিরকোনিয়া ক্রাউন লাগানোর আগে দাঁতের ডাইসের উপরে -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src="https://i.postimg.cc/Y2JVz9LD/IMG20250811134017.jpg " alt="জিরকোনিয়া ক্রাউন লাগানোর আগে দাঁতের ডাইসের উপরে">
-        <div class="image-badge">
-            <i class="fas fa-clipboard-check"></i> প্রস্তুতি পর্যায়
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">জিরকোনিয়া ক্রাউন লাগানোর আগে দাঁতের ডাইস প্রস্তুতি</h4>
-        <p class="caption-desc">জিরকোনিয়া ক্রাউন লাগানোর পূর্বে দাঁতের ডাইসের উপর সঠিক মাপ ও ফিটিং নিশ্চিত করার প্রস্তুতি পর্যায়। পারফেক্ট ফিটিংয়ের জন্য প্রয়োজনীয় প্রস্তুতি।</p>
-        <div class="caption-tags">
-            <span class="tag">ডাইস প্রস্তুতি</span>
-            <span class="tag">পরিমাপ</span>
-            <span class="tag">ফিটিং</span>
-        </div>
-    </div>
-</div>
-
-<!-- ছবি ১০: উপরনের মাড়ির ১৪টি ক্রাউন লাগানোর পর -->
-<div class="gallery-card">
-    <div class="card-image">
-        <img src="https://i.postimg.cc/RCj8LFJ8/IMG20250714112723.jpg" alt="উপরের মাড়ির ১৪টি ক্রাউন লাগানোর পর">
-        <div class="image-badge">
-            <i class="fas fa-award"></i> সফল ট্রিটমেন্ট
-        </div>
-    </div>
-    <div class="card-caption">
-        <h4 class="caption-title">১৪টি ক্রাউনের পর সম্পূর্ণ ট্রান্সফরমেশন</h4>
-        <p class="caption-desc">সম্পূর্ণ উপরের মাড়িতে ১৪টি ক্রাউন লাগানোর পরের চূড়ান্ত ফলাফল। রোগীর আত্মবিশ্বাস ফিরে এসেছে এবং হাসি সম্পূর্ণরূপে ট্রান্সফর্ম হয়েছে।</p>
-        <div class="caption-tags">
-            <span class="tag">সম্পূর্ণ ট্রান্সফরমেশন</span>
-            <span class="tag">আত্মবিশ্বাস</span>
-            <span class="tag">চূড়ান্ত ফলাফল</span>
-        </div>
-    </div>
-</div>
-            
-            <!-- বাকি ৪টি ছবির জন্য একইভাবে যোগ করুন -->
-        </div>
-        
-        <br>
-        <div class="coverflow-controls">
-            <button class="coverflow-prev" aria-label="পূর্ববর্তী ছবি">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <div class="coverflow-indicator">
-                <span class="current-slide">1</span> / <span class="total-slides">15</span>
-            </div>
-            <button class="coverflow-next" aria-label="পরবর্তী ছবি">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-        
-        <br>
-        <div class="case-study-note">
-            <i class="fas fa-lightbulb"></i>
-            <span>প্রতিটি কেস স্টাডিতে রোগীর সমস্যা, চিকিৎসা পদ্ধতি এবং ফলাফল বিস্তারিত দেখানো হয়েছে</span>
-        </div>
-    </div>
-</section>
+    .gallery-card {
+        width: 320px;
+        height: 390px;
+    }
     
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-wrapper">
-                <div class="about-image-container">
-                    <div class="image-box">
-                        <img src="https://i.postimg.cc/yNPt7YHM/young-female-patient-with-open-mouth-examining-dental-inspection-dentist-office.jpg" alt="About Chowdhury Dental" class="about-main-img">
-                        <div class="experience-badge">
-                            <span class="years">৩০+</span>
-                            <span class="text">বছরের<br>অভিজ্ঞতা</span>
-                        </div>
-                    </div>
-                    <div class="pattern-dots"></div>
-                </div>
-
-                <div class="about-text-content">
-                    <h4 class="sub-heading">আমাদের পরিচিতি</h4>
-                    <h2 class="main-heading">আপনার হাসির সুরক্ষায় <br><span class="highlight-text">৩০ বছরের পথচলা</span></h2>
-                    
-                    <p class="description">
-                        Chowdhury Dental ক্লিনিক ১৯৯৪-৯৫ সাল থেকে লালমোহন ও ভোলা জেলার মানুষের সেবায় নিয়োজিত। আমরা বিশ্বাস করি, একটি সুন্দর হাসি আত্মবিশ্বাস বাড়ায়। তাই আধুনিক যন্ত্রপাতি ও অভিজ্ঞ ডাক্তারদের সমন্বয়ে আমরা নিশ্চিত করি আন্তর্জাতিক মানের ডেন্টাল সেবা।
-                    </p>
-
-                    <div class="about-features-grid">
-                        <div class="feature-box">
-                            <div class="icon-box"><i class="fas fa-microscope"></i></div>
-                            <div>
-                                <h5>আধুনিক যন্ত্রপাতি</h5>
-                                <small>সর্বাধুনিক প্রযুক্তির ব্যবহার</small>
-                            </div>
-                        </div>
-                        <div class="feature-box">
-                            <div class="icon-box"><i class="fas fa-user-md"></i></div>
-                            <div>
-                                <h5>অভিজ্ঞ ডাক্তার</h5>
-                                <small>৩০+ বছরের অভিজ্ঞতা</small>
-                            </div>
-                        </div>
-                        <div class="feature-box">
-                            <div class="icon-box"><i class="fas fa-couch"></i></div>
-                            <div>
-                                <h5>নিরাপদ পরিবেশ</h5>
-                                <small>জীবাণুমুক্ত ও আরামদায়ক</small>
-                            </div>
-                        </div>
-                        <div class="feature-box">
-                            <div class="icon-box"><i class="fas fa-headset"></i></div>
-                            <div>
-                                <h5>সার্বক্ষণিক সেবা</h5>
-                                <small>রোগীর জরুরি যত্ন</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="#contact" class="btn btn-primary about-btn">যোগাযোগ করুন <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="doctors" class="doctors">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">আমাদের বিশেষজ্ঞ ডাক্তারগণ</h2>
-                <p class="section-subtitle">অন-কল বিশেষজ্ঞ ডাক্তারগন এবং সার্বক্ষণিক অভিজ্ঞ চিকিৎসকদের তত্ত্বাবধানে নিশ্চিত করুন আপনার পরিবারের ডেন্টাল সুরক্ষা</p>
-            </div>
-
-            <div class="doctors-grid">
-                <div class="doctor-card">
-                    <div class="card-badge">৩০ বছরের অভিজ্ঞতা</div>
-                    <div class="doctor-image-wrapper">
-                        <div class="blob-bg"></div>
-                        <img src="https://i.postimg.cc/BnnyHzrD/Untitled-design-20250602-134329-0000.png" alt="Dr. Habibur Rahman" class="doctor-img">
-                    </div>
-                    <div class="doctor-info">
-                        <h3 class="doctor-name">হাবিবুর রহমান চৌধুরী</h3>
-                        <p class="doctor-role">ডেন্টাল ও ওরাল চিকিৎসা</p>
-                        
-                        <div class="doctor-qualifications">
-                            <span class="qual-pill">Diploma in Dental Technology (DDT)</span>
-                            <span class="qual-pill">FT (Oral Health)</span>
-                        </div>
-
-                        <div class="doctor-specialty">
-                            <p><i class="fas fa-star"></i> দাঁত ও মুখগহ্বর ট্রিটমেন্ট </p>
-                            <p><i class="fas fa-university"></i> Global Alternative Medical Institute </p>
-                        </div>
-
-                        <a href="#contact" class="doc-btn">অ্যাপয়েন্টমেন্ট নিন</a>
-                    </div>
-                </div>
-                
-                <div class="doctor-card">
-                    <div class="card-badge new-badge">স্মাইল ডিজাইনার</div>
-                    <div class="doctor-image-wrapper">
-                        <div class="blob-bg color-2"></div>
-                        <img src="https://i.postimg.cc/kgv6Pr4b/1757792644851-Edited.png" alt="Dr. Tahmid Habib" class="doctor-img">
-                    </div>
-                    <div class="doctor-info">
-                        <h3 class="doctor-name">তাহমিদ হাবিব</h3>
-                        <p class="doctor-role">ডেন্টাল ও ওরাল চিকিৎসা</p>
-                        
-                        <div class="doctor-qualifications">
-                            <span class="qual-pill">Diploma in Dental Technology (DDT)</span>
-                            <span class="qual-pill">FT Smile Expert</span>
-                        </div>
-
-                        <div class="doctor-specialty">
-                            <p><i class="fas fa-star"></i> স্মাইল মেকওভার </p>
-                            <p><i class="fas fa-university"></i> Global Alternative Medical Institute </p>
-                            <p><i class="fas fa-id-card"></i> রেজিঃ নং ৪৫৭৯০১</p>
-                        </div>
-
-                        <a href="#contact" class="doc-btn">অ্যাপয়েন্টমেন্ট নিন</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    .card-image {
+        height: 220px;
+    }
     
-    <div style="clear: both; margin-bottom: 50px;"></div>
+    .card-caption {
+        height: 170px;
+        padding: 20px;
+    }
+    
+    .caption-title {
+        font-size: 18px;
+    }
+    
+    .caption-desc {
+        font-size: 14px;
+    }
+}
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h4 class="sub-heading">আমাদের চিকিৎসা সেবাসমূহ</h4>
-                <h2 class="section-title">আধুনিক ডেন্টাল সলিউশন</h2>
-                <p class="section-subtitle">আপনার দাঁতের সুরক্ষায় আমাদের আছে সর্বাধুনিক প্রযুক্তি ও সাশ্রয়ী প্যাকেজ</p>
-            </div>
+/* ট্যাবলেট পোর্ট্রেট (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .coverflow-container {
+        min-height: 420px;
+        padding: 30px 15px;
+    }
+    
+    .coverflow-wrapper {
+        height: 380px;
+        perspective: 1000px;
+    }
+    
+    .gallery-card {
+        width: 280px;
+        height: 350px;
+    }
+    
+    .card-image {
+        height: 200px;
+    }
+    
+    .card-caption {
+        height: 150px;
+        padding: 18px;
+    }
+    
+    .caption-title {
+        font-size: 17px;
+        height: 2.4em;
+    }
+    
+    .caption-desc {
+        font-size: 14px;
+        height: 4.2em;
+    }
+    
+    .tag {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+}
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="fas fa-tooth"></i>
-                    </div>
-                    <h3 class="service-title">সাধারণ দাঁতের চিকিৎসা</h3>
-                    <p class="service-desc">নিয়মিত চেকআপ এবং প্রাথমিক যত্ন</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> নিয়মিত দাঁতের পরীক্ষা</li>
-                        <li><i class="fas fa-check"></i> দাঁত পরিষ্কার ও স্কেলিং</li>
-                        <li><i class="fas fa-check"></i> ক্যাভিটি ফিলিং</li>
-                        <li><i class="fas fa-check"></i> দাঁতের ব্যথার চিকিৎসা</li>
-                    </ul>
-                    <div class="price-tag">
-                        <span class="label">খরচ শুরু:</span>
-                        <span class="amount">৫০০ - ২,০০০ টাকা</span>
-                    </div>
-                </div>
+/* মোবাইল ল্যান্ডস্কেপ (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .coverflow-container {
+        min-height: 380px;
+        padding: 25px 10px;
+    }
+    
+    .coverflow-wrapper {
+        height: 340px;
+        perspective: 800px;
+    }
+    
+    .gallery-card {
+        width: 240px;
+        height: 320px;
+    }
+    
+    .card-image {
+        height: 180px;
+    }
+    
+    .card-caption {
+        height: 140px;
+        padding: 15px;
+    }
+    
+    .caption-title {
+        font-size: 16px;
+        height: 2.2em;
+    }
+    
+    .caption-desc {
+        font-size: 13px;
+        height: 3.9em;
+        -webkit-line-clamp: 3; /* ৩ লাইন দেখাবে */
+    }
+    
+    .image-badge {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .tag {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+}
 
-                <div class="service-card">
-                    <div class="service-icon-box blue-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3 class="service-title">দাঁত সাদাকরণ</h3>
-                    <p class="service-desc">উজ্জ্বল ও সুন্দর হাসির জন্য</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> লেজার টিথ হোয়াইটেনিং</li>
-                        <li><i class="fas fa-check"></i> হোম হোয়াইটেনিং কিট</li>
-                        <li><i class="fas fa-check"></i> দাগ দূরীকরণ</li>
-                        <li><i class="fas fa-check"></i> পলিশিং</li>
-                    </ul>
-                    <div class="price-tag">
-                        <span class="label">খরচ শুরু:</span>
-                        <span class="amount">১,৫০০ - ৮,০০০ টাকা</span>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon-box orange-icon">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <h3 class="service-title">দাঁত তোলা (সার্জারি)</h3>
-                    <p class="service-desc">ব্যথামুক্ত ও নিরাপদ দাঁত অপসারণ</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> সাধারণ দাঁত তোলা</li>
-                        <li><i class="fas fa-check"></i> বাচ্চাদের দাঁত তোলা</li>
-                        <li><i class="fas fa-check"></i> আক্কেল দাঁত অপসারণ</li>
-                        <li><i class="fas fa-check"></i> সার্জিক্যাল এক্সট্র্যাকশন</li>
-                        <li><i class="fas fa-check"></i> ব্যথামুক্ত লোকাল এনেস্থেসিয়া</li>
-                    </ul>
-                    <div class="price-tag">
-                        <span class="label">খরচ শুরু:</span>
-                        <span class="amount">৫০০ - ৪০,০০০ টাকা</span>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon-box green-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="service-title">রুট ক্যানেল ট্রিটমেন্ট</h3>
-                    <p class="service-desc">সংক্রমিত দাঁত বাঁচানোর আধুনিক পদ্ধতি</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> এক ঘন্টায় ব্যথামুক্ত সম্পূর্ণ রুট ক্যানেল চিকিৎসা</li>
-                        <li><i class="fas fa-check"></i> আধুনিক এন্ডোমোটর সিস্টেমে অল্প সময়ে রুট ক্যানেল ওয়াস</li>
-                        <li><i class="fas fa-check"></i> আধুনিক রোটারি সিস্টেম</li>
-                        <li><i class="fas fa-check"></i> ক্যাপ বা ক্রাউন স্থাপন</li>
-                    </ul>
-                    <div class="price-tag">
-                        <span class="label">খরচ শুরু:</span>
-                        <span class="amount">৩,৫০০ - ১০,০০০ টাকা</span>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon-box purple-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3 class="service-title">ক্রাউন ও ব্রিজ</h3>
-                    <p class="service-desc">ক্ষতিগ্রস্ত দাঁত মেরামত ও সৌন্দর্য বৃদ্ধি</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> জিরকোনিয়া মাল্টি লেয়ার ক্রাউন</li>
-                        <li><i class="fas fa-check"></i> জিরকোনিয়া সিঙ্গেল লেয়ার ক্রাউন</li>
-                        <li><i class="fas fa-check"></i> স্পেশাল পোর্সেলিন ক্রাউন</li>
-                        <li><i class="fas fa-check"></i> পোর্সেলিন ক্রাউন</li>
-                        <li><i class="fas fa-check"></i> পোর্সেলিন এন্ড মেটাল ক্রাউন</li>
-                        <li><i class="fas fa-check"></i> মেটাল ফেস ক্রাউন</li>
-                        <li><i class="fas fa-check"></i> ব্রিজ ওয়ার্ক</li>
-                        <li><i class="fas fa-check"></i> ফ্লেক্সিবল ডেনচার</li>
-                        <li><i class="fas fa-check"></i> ১৫ বছরের গ্যারান্টি</li>
-                    </ul>
-                    <div class="price-tag">
-                        <span class="label">খরচ শুরু:</span>
-                        <span class="amount">২,৫০০ - ২০,০০০ টাকা</span>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon-box red-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3 class="service-title">মাড়ির চিকিৎসা</h3>
-                    <p class="service-desc">মাড়ির রক্তক্ষরণ ও দুর্গন্ধ দূরীকরণ</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> মাড়ির প্রদাহ চিকিৎসা</li>
-                        <li><i class="fas fa-check"></i> গভীর পরিষ্কারকরণ</li>
-                        <li><i class="fas fa-check"></i> আল্ট্রাসনিক স্কেলিং</li>
-                        <li><i class="fas fa-check"></i> মুখের দুর্গন্ধ চিকিৎসা</li>
-                    </ul>
-                    <div class="price-tag">
-                        <span class="label">খরচ শুরু:</span>
-                        <span class="amount">১,০০০ - ৫,০০০ টাকা</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+/* মোবাইল পোর্ট্রেট (480px - 575px) */
+@media (min-width: 480px) and (max-width: 575px) {
+    .coverflow-container {
+        min-height: 350px;
+        padding: 20px 8px;
+    }
+    
+    .coverflow-wrapper {
+        height: 310px;
+        perspective: 700px;
+    }
+    
+    .gallery-card {
+        width: 220px;
+        height: 300px;
+    }
+    
+    .card-image {
+        height: 170px;
+    }
+    
+    .card-caption {
+        height: 130px;
+        padding: 12px;
+    }
+    
+    .caption-title {
+        font-size: 15px;
+        height: 2.6em;
+        -webkit-line-clamp: 2;
+    }
+    
+    .caption-desc {
+        font-size: 12px;
+        height: 3.6em;
+        -webkit-line-clamp: 3;
+    }
+    
+    .caption-tags {
+        gap: 6px;
+    }
+    
+    .tag {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}
 
-    <section id="contact" class="contact-premium">
-        <div class="container">
-            <div class="section-header">
-                <h4 class="sub-heading">আমাদের সাথে যোগাযোগ</h4>
-                <h2 class="section-title">সরাসরি কথা বলুন</h2>
-                <p class="section-subtitle">পরামর্শ বা অ্যাপয়েন্টমেন্টের জন্য ২৪/৭ আমরা আপনার পাশে আছি</p>
-            </div>
+/* ছোট মোবাইল (360px - 479px) */
+@media (min-width: 360px) and (max-width: 479px) {
+    .coverflow-container {
+        min-height: 320px;
+        padding: 15px 5px;
+    }
+    
+    .coverflow-wrapper {
+        height: 280px;
+        perspective: 600px;
+    }
+    
+    .gallery-card {
+        width: 200px;
+        height: 280px;
+    }
+    
+    .card-image {
+        height: 160px;
+    }
+    
+    .card-caption {
+        height: 120px;
+        padding: 10px;
+    }
+    
+    .caption-title {
+        font-size: 14px;
+        height: 2.4em;
+        -webkit-line-clamp: 2;
+    }
+    
+    .caption-desc {
+        font-size: 11px;
+        height: 3.3em;
+        -webkit-line-clamp: 3;
+        display: -webkit-box !important; /* ফোর্সডি দেখানো */
+    }
+    
+    .tag {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+}
 
-            <div class="contact-wrapper">
-                <div class="contact-info-grid">
-                    <div class="contact-card highlight-card">
-                        <div class="icon-circle pulse-icon">
-                            <i class="fas fa-phone-volume"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>সরাসরি কল করুন</h3>
-                            <p>জরুরি প্রয়োজনে বা বুকিং দিতে</p>
-                            <div class="phone-numbers">
-                                <a href="tel:+8801715586670" class="call-btn primary">
-                                    <i class="fas fa-mobile-alt"></i> 01715-586670
-                                </a>
-                                <a href="tel:+8801608580002" class="call-btn secondary">
-                                    <i class="fas fa-phone"></i> 01608-580002
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+/* খুব ছোট মোবাইল (359px পর্যন্ত) */
+@media (max-width: 359px) {
+    .coverflow-container {
+        min-height: 300px;
+        padding: 10px 3px;
+    }
+    
+    .coverflow-wrapper {
+        height: 260px;
+        perspective: 500px;
+    }
+    
+    .gallery-card {
+        width: 180px;
+        height: 260px;
+    }
+    
+    .card-image {
+        height: 150px;
+    }
+    
+    .card-caption {
+        height: 110px;
+        padding: 8px;
+    }
+    
+    .caption-title {
+        font-size: 13px;
+        height: 2.6em;
+        -webkit-line-clamp: 2;
+    }
+    
+    .caption-desc {
+        font-size: 10px;
+        height: 3.0em;
+        -webkit-line-clamp: 2; /* খুব ছোট স্ক্রিনে ২ লাইন */
+    }
+    
+    .caption-tags {
+        gap: 4px;
+    }
+    
+    .tag {
+        font-size: 8px;
+        padding: 2px 5px;
+    }
+}
 
-                    <div class="contact-card">
-                        <div class="icon-circle blue-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>আমাদের ঠিকানা</h3>
-                            <p>মোল্লা জামে মসজিদের ২য় তলা, আরজু হোটেলের সামনে, সদর রোড, লালমোহন, ভোলা</p>
-                        </div>
-                    </div>
+/* কভারফ্লো কন্ট্রোলস স্টাইল */
+.coverflow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+}
 
-                    <div class="contact-card">
-                        <div class="icon-circle green-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>রোগী দেখার সময়</h3>
-                            <p><strong>শনিবার - বৃহস্পতিবার:</strong> সকাল ১০টা - দুপুর ১টা</p>
-                            <p>বিকাল ৪টা - রাত ৮টা</p>
-                        </div>
-                    </div>
+.coverflow-prev,
+.coverflow-next {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(25, 118, 210, 0.3);
+    position: relative;
+    z-index: 20;
+}
 
-                    <div class="contact-card">
-                        <div class="icon-circle purple-icon">
-                            <i class="fas fa-envelope-open-text"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>ইমেইল করুন</h3>
-                            <a href="mailto:info.chowdhurydental@gmail.com" class="email-link">info.chowdhurydental@gmail.com</a>
-                        </div>
-                    </div>
-                </div>
+.coverflow-prev:hover,
+.coverflow-next:hover {
+    background: #FF9800;
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+}
 
-                <div class="map-social-wrapper">
-                    <div class="map-frame">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.756286598565!2d90.73033707593258!3d22.34865764287661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3754b5005b4b726d%3A0x6c6e752940251430!2sChowdhury%20Dental!5e1!3m2!1sen!2sbd!4v1737398000000!5m2!1sen!2sbd" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                        </iframe>
-                        <div class="map-badge"><i class="fas fa-location-arrow"></i> গুগল ম্যাপে দেখুন</div>
-                    </div>
+.coverflow-indicator {
+    background: rgba(25, 118, 210, 0.1);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 600;
+    color: #1976D2;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    position: relative;
+    z-index: 20;
+    font-size: 16px;
+}
 
-                    <div class="social-hub">
-                        <h3>সোশ্যাল মিডিয়া</h3>
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/Habibur.Rahman.Chowdhury.76" target="_blank" class="s-icon fb"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://wa.me/qr/YBLBD6Q5GWYIN1" class="s-icon wa"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" class="s-icon yt"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="s-icon ins"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+.current-slide {
+    font-size: 20px;
+    font-weight: 700;
+}
 
-    <footer class="footer-royal">
-        <div class="container">
-            <div class="footer-cta-box">
-                <div class="cta-text">
-                    <h3>দাঁতের সমস্যা নিয়ে চিন্তিত?</h3>
-                    <p>দেরি না করে আজই আমাদের বিশেষজ্ঞ ডাক্তারদের পরামর্শ নিন।</p>
-                </div>
-                <a href="#contact" class="cta-btn-pulse">অ্যাপয়েন্টমেন্ট নিন <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
+.total-slides {
+    font-size: 16px;
+    opacity: 0.7;
+}
 
-        <div class="footer-main-content">
-            <div class="container">
-                <div class="footer-row">
-                    <div class="footer-widget brand-widget">
-                        <div class="f-logo-royal">
-                            <img src="https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png" alt="Chowdhury Dental">
-                            <span>Chowdhury Dental</span>
-                        </div>
-                        <p>আপনার হাসির সুরক্ষায় আমরা অঙ্গীকারবদ্ধ। আধুনিক প্রযুক্তি ও আন্তরিক সেবার এক অনন্য প্রতিষ্ঠান।</p>
-                        
-                        <div class="f-social-icons">
-                            <a href="https://www.facebook.com/Habibur.Rahman.Chowdhury.76" target="_blank" class="icon-box fb"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://wa.me/qr/YBLBD6Q5GWYIN1" class="icon-box wa"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" class="icon-box yt"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="icon-box in"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
+/* =========================================
+   CASE STUDY NOTE - FIXED
+   ========================================= */
+.case-study-note {
+    background: linear-gradient(135deg, #E3F2FD, #F3E5F5);
+    border-left: 4px solid #1976D2;
+    padding: 18px 25px;
+    border-radius: 12px;
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 5;
+    width: 90%;
+}
 
-                    <div class="footer-widget link-widget">
-                        <h3 class="widget-title">দ্রুত লিংক</h3>
-                        <ul>
-                            <li><a href="#home">হোম পেজ</a></li>
-                            <li><a href="#about">আমাদের সম্পর্কে</a></li>
-                            <li><a href="#doctors">বিশেষজ্ঞ ডাক্তার</a></li>
-                            <li><a href="#services">চিকিৎসা সমূহ</a></li>
-                            <li><a href="#contact">যোগাযোগ</a></li>
-                        </ul>
-                    </div>
+.case-study-note i {
+    color: #1976D2;
+    font-size: 26px;
+    flex-shrink: 0;
+}
 
-                    <div class="footer-widget link-widget">
-                        <h3 class="widget-title">জনপ্রিয় সেবা</h3>
-                        <ul>
-                            <li><a href="#services">রুট ক্যানেল</a></li>
-                            <li><a href="#services">দাঁত তোলা</a></li>
-                            <li><a href="#services">কসমেটিক ফিলিং</a></li>
-                            <li><a href="#services">স্কেলিং ও পলিশিং</a></li>
-                            <li><a href="#services">শিশুদের দন্ত চিকিৎসা</a></li>
-                        </ul>
-                    </div>
+.case-study-note span {
+    font-size: 15px;
+    color: #455A64;
+    font-weight: 500;
+    line-height: 1.6;
+    word-break: break-word;
+}
 
-                    <div class="footer-widget contact-widget">
-                        <h3 class="widget-title">অফিসিয়াল তথ্য</h3>
-                        <ul class="info-list">
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>মোল্লা জামে মসজিদ মার্কেট (২য় তলা), আরজু হোটেলের সামনে, সদর রোড, লালমোহন, ভোলা</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-phone-volume"></i>
-                                <span>01608-580002</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <span>info.chowdhurydental@gmail.com</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-clock"></i>
-                                <span>প্রতিদিন: সকাল ১০টা - রাত ৮টা</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+/* মোবাইলের জন্য নোট স্টাইল */
+@media (max-width: 768px) {
+    .case-study-note {
+        padding: 15px 20px;
+        gap: 12px;
+        margin-top: 25px;
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .case-study-note i {
+        font-size: 22px;
+    }
+    
+    .case-study-note span {
+        font-size: 13px;
+    }
+}
 
-        <div class="footer-copyright-royal">
-            <div class="container copyright-flex">
-                <p>© 2026 Chowdhury Dental | All rights reserved.</p>
-                <p>Design & Developed by <span class="highlight-dev">TAHMID HABIB</span></p>
-            </div>
-        </div>
-    </footer>
+@media (max-width: 480px) {
+    .case-study-note {
+        padding: 12px 15px;
+        gap: 10px;
+        margin-top: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+}
 
-    <button id="scrollTopBtn" class="scroll-top-btn" title="উপরে যান">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+/* টেক্সট ওভারফ্লো প্রতিরোধ */
+.caption-title,
+.caption-desc {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+/* কার্ডের জন্য অতিরিক্ত স্পেস নিশ্চিতকরণ */
+.gallery-card {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* স্ক্রিনের বাইরের কার্ড হ্যান্ডেলিং */
+.gallery-card.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.gallery-card.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* =========================================
+   MOBILE SPECIFIC FIXES - SIMPLE VERSION
+   ========================================= */
+@media (max-width: 768px) {
+    /* কভারফ্লো কন্টেইনার ফিক্স */
+    .coverflow-container {
+        min-height: 400px !important;
+        padding: 15px 5px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    /* কভারফ্লো র‍্যাপার */
+    .coverflow-wrapper {
+        height: 350px !important;
+        perspective: 800px;
+        margin: 0 auto 20px auto !important;
+        width: 100% !important;
+        position: relative !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    /* প্রতিটি কার্ড ফিক্স */
+    .gallery-card {
+        width: 85vw !important; /* ভিউপোর্টের 85% */
+        max-width: 300px !important;
+        height: auto !important; /* অটো হাইট */
+        min-height: 380px !important;
+        position: absolute !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 15px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+        background: white !important;
+        overflow: visible !important;
+        z-index: 1 !important;
+    }
+    
+    /* সেন্টার কার্ড (একটিভ) */
+    .gallery-card.active {
+        width: 90vw !important; /* একটু বড় */
+        max-width: 320px !important;
+        min-height: 420px !important;
+        z-index: 1000 !important;
+        box-shadow: 0 15px 35px rgba(255,152,0,0.25) !important;
+        border: 3px solid #FF9800 !important;
+    }
+    
+    /* কার্ড ইমেজ অংশ */
+    .card-image {
+        width: 100% !important;
+        height: 180px !important; /* ফিক্সড হাইট */
+        border-radius: 15px 15px 0 0 !important;
+        overflow: hidden !important;
+    }
+    
+    .card-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+    
+    /* ইমেজ ব্যাজ */
+    .image-badge {
+        position: absolute !important;
+        top: 12px !important;
+        right: 12px !important;
+        background: rgba(255,255,255,0.95) !important;
+        padding: 6px 12px !important;
+        border-radius: 20px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        color: #1976D2 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 5px !important;
+        z-index: 2 !important;
+        white-space: nowrap !important;
+    }
+    
+    /* ক্যাপশন অংশ - এখানে সবচেয়ে গুরুত্বপূর্ণ */
+    .card-caption {
+        padding: 15px !important;
+        background: white !important;
+        height: auto !important; /* অটো হাইট */
+        min-height: 200px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        border-radius: 0 0 15px 15px !important;
+        overflow: visible !important;
+        position: relative !important;
+    }
+    
+    /* টাইটেল - একদম উপরে */
+    .caption-title {
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        color: #0D47A1 !important;
+        margin-bottom: 8px !important;
+        line-height: 1.3 !important;
+        height: auto !important; /* অটো হাইট */
+        min-height: 40px !important; /* কমপক্ষে ২ লাইন */
+        overflow: visible !important;
+        display: block !important; /* -webkit-box ব্যবহার করবেন না */
+        word-break: break-word !important;
+        white-space: normal !important;
+        text-overflow: unset !important;
+    }
+    
+    /* ডেসক্রিপশন - মাঝখানে */
+    .caption-desc {
+        font-size: 13px !important;
+        color: #546E7A !important;
+        line-height: 1.5 !important;
+        margin-bottom: 12px !important;
+        height: auto !important; /* অটো হাইট */
+        min-height: 60px !important; /* কমপক্ষে ৩ লাইন */
+        overflow: visible !important;
+        display: block !important; /* -webkit-box ব্যবহার করবেন না */
+        word-break: break-word !important;
+        white-space: normal !important;
+        text-overflow: unset !important;
+        flex-grow: 1 !important;
+    }
+    
+    /* ট্যাগস - একদম নিচে */
+    .caption-tags {
+        display: flex !important;
+        gap: 6px !important;
+        flex-wrap: wrap !important;
+        margin-top: auto !important; /* একদম নিচে পাঠানো */
+        justify-content: flex-start !important;
+    }
+    
+    .tag {
+        background: rgba(25, 118, 210, 0.1) !important;
+        color: #1976D2 !important;
+        padding: 4px 10px !important;
+        border-radius: 12px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        border: 1px solid rgba(25, 118, 210, 0.2) !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+    }
+    
+    /* সাইড কার্ডগুলোর স্টাইল */
+    .gallery-card:not(.active) {
+        opacity: 0.6 !important;
+        transform: scale(0.85) !important;
+        z-index: 1 !important;
+    }
+    
+    /* কন্ট্রোলস */
+    .coverflow-controls {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 20px !important;
+        margin-top: 15px !important;
+        z-index: 1000 !important;
+        position: relative !important;
+    }
+    
+    .coverflow-prev,
+    .coverflow-next {
+        width: 45px !important;
+        height: 45px !important;
+        background: #1976D2 !important;
+        color: white !important;
+        font-size: 18px !important;
+    }
+    
+    .coverflow-indicator {
+        padding: 6px 15px !important;
+        font-size: 14px !important;
+    }
+    
+    /* হেডার ফিক্স */
+    .modern-header {
+        padding: 15px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .section-title-glow {
+        font-size: 22px !important;
+    }
+    
+    .section-subtitle-modern {
+        font-size: 14px !important;
+    }
+    
+    /* কেস স্টাডি নোট */
+    .case-study-note {
+        margin-top: 20px !important;
+        padding: 12px 15px !important;
+        font-size: 12px !important;
+        width: 95% !important;
+    }
+}
+
+/* ছোট মোবাইলের জন্য অতিরিক্ত ফিক্স */
+@media (max-width: 480px) {
+    .coverflow-wrapper {
+        height: 320px !important;
+    }
+    
+    .gallery-card {
+        width: 90vw !important;
+        min-height: 350px !important;
+    }
+    
+    .gallery-card.active {
+        width: 95vw !important;
+        min-height: 380px !important;
+    }
+    
+    .card-image {
+        height: 160px !important;
+    }
+    
+    .card-caption {
+        padding: 12px !important;
+        min-height: 190px !important;
+    }
+    
+    .caption-title {
+        font-size: 15px !important;
+        min-height: 35px !important;
+    }
+    
+    .caption-desc {
+        font-size: 12px !important;
+        min-height: 55px !important;
+    }
+    
+    .tag {
+        font-size: 10px !important;
+        padding: 3px 8px !important;
+    }
+}
+
+/* খুব ছোট মোবাইল */
+@media (max-width: 360px) {
+    .coverflow-wrapper {
+        height: 300px !important;
+    }
+    
+    .gallery-card {
+        min-height: 320px !important;
+    }
+    
+    .gallery-card.active {
+        min-height: 350px !important;
+    }
+    
+    .card-image {
+        height: 150px !important;
+    }
+    
+    .card-caption {
+        padding: 10px !important;
+        min-height: 170px !important;
+    }
+    
+    .caption-title {
+        font-size: 14px !important;
+        min-height: 32px !important;
+    }
+    
+    .caption-desc {
+        font-size: 11px !important;
+        min-height: 50px !important;
+    }
+}
+
+/* মোবাইলের জন্য জাভাস্ক্রিপ্ট আপডেট */
+@media (max-width: 768px) {
+    .gallery-card {
+        transition: transform 0.4s ease, opacity 0.4s ease !important;
+    }
+}
+/* =========================================
+   COMPLETE MOBILE FIX FOR IMAGE CUTTING
+   ========================================= */
+@media (max-width: 768px) {
+    /* স্টেপ ১: কভারফ্লো কন্টেইনার */
+    .coverflow-container {
+        min-height: 420px !important;
+        padding: 10px 0 !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    /* স্টেপ ২: র‍্যাপার */
+    .coverflow-wrapper {
+        height: 380px !important;
+        margin: 0 auto 10px auto !important;
+        padding: 10px 0 !important;
+        position: relative !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important; /* উপরে অ্যালাইন */
+    }
+    
+    /* স্টেপ ৩: কার্ড স্ট্রাকচার */
+    .gallery-card {
+        width: 280px !important;
+        height: auto !important;
+        min-height: 400px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 15px !important;
+        background: white !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+    }
+    
+    /* স্টেপ ৪: ইমেজ কন্টেইনার (সবচেয়ে গুরুত্বপূর্ণ) */
+    .card-image {
+        width: 100% !important;
+        height: 200px !important; /* ফিক্সড হাইট */
+        min-height: 200px !important; /* কম না হবে */
+        max-height: 200px !important; /* বেশি না হবে */
+        flex-shrink: 0 !important; /* সাইজ কমবে না */
+        position: relative !important;
+        overflow: hidden !important;
+        border-radius: 15px 15px 0 0 !important;
+        background: #f5f5f5 !important; /* ব্যাকআপ কালার */
+    }
+    
+    /* স্টেপ ৫: ইমেজ নিজে */
+    .card-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        display: block !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        margin: auto !important; /* পূর্ণ কেন্দ্রিক */
+    }
+    
+    /* স্টেপ ৬: একটিভ কার্ড */
+    .gallery-card.active {
+        width: 300px !important;
+        min-height: 420px !important;
+        z-index: 1000 !important;
+    }
+    
+    .gallery-card.active .card-image {
+        height: 220px !important;
+        min-height: 220px !important;
+        max-height: 220px !important;
+    }
+    
+    /* স্টেপ ৭: ক্যাপশন */
+    .card-caption {
+        padding: 15px !important;
+        flex: 1 !important; /* বাকি জায়গা নেবে */
+        min-height: 200px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: white !important;
+    }
+    
+    /* স্টেপ ৮: ব্যাজ */
+    .image-badge {
+        top: 10px !important;
+        right: 10px !important;
+        z-index: 2 !important;
+    }
+    
+    /* স্টেপ ৯: ট্রান্সফর্ম ঠিক করা */
+    .gallery-card:not(.active) {
+        transform: scale(0.85) !important;
+        opacity: 0.7 !important;
+    }
+}
+
+/* ছোট মোবাইলের জন্য */
+@media (max-width: 480px) {
+    .coverflow-wrapper {
+        height: 360px !important;
+    }
+    
+    .gallery-card {
+        width: 260px !important;
+        min-height: 380px !important;
+    }
+    
+    .card-image {
+        height: 180px !important;
+        min-height: 180px !important;
+        max-height: 180px !important;
+    }
+    
+    .gallery-card.active {
+        width: 280px !important;
+        min-height: 400px !important;
+    }
+    
+    .gallery-card.active .card-image {
+        height: 200px !important;
+        min-height: 200px !important;
+        max-height: 200px !important;
+    }
+}
+
+
+/* =========================================
+   ABOUT SECTION STYLES
+   ========================================= */
+.about {
+    background-color: #FFFFFF;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-image-container {
+    position: relative;
+    z-index: 1;
+}
+
+.image-box {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.about-main-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.image-box:hover .about-main-img {
+    transform: scale(1.05);
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: 30px;
+    left: -20px;
+    background: linear-gradient(135deg, #1976D2, #0288D1);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(25, 118, 210, 0.3);
+    text-align: center;
+    border: 4px solid #fff;
+    animation: floatBadge 3s ease-in-out infinite;
+}
+
+.experience-badge .years {
+    display: block;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.experience-badge .text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pattern-dots {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 150px;
+    height: 150px;
+    background-image: radial-gradient(#FF9800 2px, transparent 2px);
+    background-size: 20px 20px;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.sub-heading {
+    color: #1976D2;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.main-heading {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #263238;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: #546E7A;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.about-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.feature-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #F5F9FC;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.feature-box:hover {
+    background: #E1F5FE;
+    transform: translateY(-5px);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1976D2;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.feature-box h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    color: #37474F;
+}
+
+.feature-box small {
+    font-size: 13px;
+    color: #78909C;
+}
+
+.about-btn {
+    padding: 12px 35px;
+    border-radius: 30px;
+}
+
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* =========================================
+   DOCTORS SECTION STYLES
+   ========================================= */
+.doctors {
+    background: linear-gradient(180deg, #F9FAFB 0%, #E3F2FD 100%);
+    padding: 80px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    color: #0D47A1;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #546E7A;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+}
+
+.doctor-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.doctor-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(25, 118, 210, 0.15);
+    border-color: #BBDEFB;
+}
+
+.card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #FF9800;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+}
+
+.new-badge {
+    background: #00BCD4;
+    box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+}
+
+.doctor-image-wrapper {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 25px auto;
+}
+
+.doctor-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+    transition: 0.4s;
+}
+
+.blob-bg {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #1976D2, #64B5F6);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.2;
+    animation: blobPulse 3s infinite;
+}
+
+.color-2 {
+    background: linear-gradient(45deg, #00BCD4, #4DD0E1);
+}
+
+@keyframes blobPulse {
+    0% { transform: scale(0.95); opacity: 0.2; }
+    50% { transform: scale(1.1); opacity: 0.4; }
+    100% { transform: scale(0.95); opacity: 0.2; }
+}
+
+.doctor-card:hover .doctor-img {
+    transform: scale(1.05);
+    border-color: #E3F2FD;
+}
+
+.doctor-name {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 24px;
+    color: #0D47A1;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.doctor-role {
+    color: #546E7A;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.doctor-qualifications {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.qual-pill {
+    background: #F1F8E9;
+    color: #33691E;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid #DCEDC8;
+}
+
+.doctor-specialty p {
+    font-size: 14px;
+    color: #455A64;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.doctor-specialty i {
+    color: #1976D2;
+}
+
+.doc-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
+    background: transparent;
+    border: 2px solid #1976D2;
+    color: #1976D2;
+    font-weight: bold;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-family: 'Hind Siliguri', sans-serif;
+}
+
+.doc-btn:hover {
+    background: #1976D2;
+    color: white;
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+}
+
+/* =========================================
+   SERVICES SECTION STYLES
+   ========================================= */
+.services {
+    background-color: #F8FAFB;
+    padding: 80px 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.service-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    border: 1px solid #E1E8ED;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(25, 118, 210, 0.1);
+    border-color: #90CAF9;
+}
+
+.service-icon-box {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #1976D2, #64B5F6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px auto;
+    font-size: 32px;
+    color: white;
+    box-shadow: 0 10px 20px rgba(25, 118, 210, 0.3);
+    transition: 0.5s;
+}
+
+.service-card:hover .service-icon-box {
+    transform: rotateY(180deg);
+}
+
+.blue-icon { background: linear-gradient(135deg, #0288D1, #4FC3F7); }
+.orange-icon { background: linear-gradient(135deg, #F57C00, #FFB74D); box-shadow: 0 10px 20px rgba(245, 124, 0, 0.3); }
+.green-icon { background: linear-gradient(135deg, #388E3C, #81C784); box-shadow: 0 10px 20px rgba(56, 142, 60, 0.3); }
+.purple-icon { background: linear-gradient(135deg, #7B1FA2, #BA68C8); box-shadow: 0 10px 20px rgba(123, 31, 162, 0.3); }
+.red-icon { background: linear-gradient(135deg, #D32F2F, #E57373); box-shadow: 0 10px 20px rgba(211, 47, 47, 0.3); }
+
+.service-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #263238;
+    margin-bottom: 10px;
+}
+
+.service-desc {
+    color: #546E7A;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.service-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 30px;
+    border-top: 1px dashed #CFD8DC;
+    padding-top: 20px;
+}
+
+.service-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: #455A64;
+    font-family: 'Hind Siliguri', sans-serif;
+}
+
+.service-list li i {
+    color: #4CAF50;
+    font-size: 14px;
+    background: #E8F5E9;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.price-tag {
+    background: #F1F8E9;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #DCEDC8;
+}
+
+.price-tag .label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #558B2F;
+}
+
+.price-tag .amount {
+    font-size: 16px;
+    font-weight: 800;
+    color: #33691E;
+}
+
+/* =========================================
+   CONTACT SECTION STYLES
+   ========================================= */
+.contact-premium {
+    background-color: #F0F4F8;
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(210,100%,96%,1) 0, transparent 50%), 
+        radial-gradient(at 50% 100%, hsla(200,100%,96%,1) 0, transparent 50%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr;
+    gap: 40px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    border: 1px solid #FFFFFF;
+}
+
+.contact-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #F8FBFF;
+    transition: all 0.3s ease;
+    border: 1px solid #E3F2FD;
+}
+
+.contact-card:hover {
+    background: #FFFFFF;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(25, 118, 210, 0.1);
+    border-color: #BBDEFB;
+}
+
+.highlight-card {
+    background: linear-gradient(135deg, #E3F2FD, #FFFFFF);
+    border: 1px solid #90CAF9;
+}
+
+.icon-circle {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+}
+
+.pulse-icon {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(25, 118, 210, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(25, 118, 210, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(25, 118, 210, 0); }
+}
+
+.blue-icon-circle { background: linear-gradient(135deg, #0288D1, #4FC3F7); }
+.green-icon-circle { background: linear-gradient(135deg, #2E7D32, #66BB6A); box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3); }
+.purple-icon-circle { background: linear-gradient(135deg, #7B1FA2, #AB47BC); box-shadow: 0 5px 15px rgba(123, 31, 162, 0.3); }
+
+.info-content h3 {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1A237E;
+    margin-bottom: 5px;
+}
+
+.info-content p {
+    font-size: 15px;
+    color: #455A64;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.phone-numbers {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.call-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.call-btn.primary {
+    background: #FF9800;
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+}
+
+.call-btn.primary:hover {
+    background: #F57C00;
+    transform: scale(1.05);
+}
+
+.call-btn.secondary {
+    background: white;
+    color: #1976D2;
+    border: 1px solid #1976D2;
+}
+
+.call-btn.secondary:hover {
+    background: #E3F2FD;
+}
+
+.email-link {
+    color: #1976D2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+.map-social-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.map-frame {
+    flex-grow: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-height: 350px;
+    border: 5px solid white;
+}
+
+.map-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1976D2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.social-hub {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #E1E8ED;
+}
+
+.social-hub h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #37474F;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.s-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.s-icon:hover {
+    transform: translateY(-5px) rotate(360deg);
+}
+
+.fb { background: #1877F2; }
+.wa { background: #25D366; }
+.yt { background: #FF0000; }
+.ins { background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C); }
+
+/* =========================================
+   FOOTER STYLES
+   ========================================= */
+.footer-royal {
+    position: relative;
+    margin-top: 150px;
+    font-family: 'Hind Siliguri', sans-serif;
+}
+
+.footer-cta-box {
+    background: linear-gradient(90deg, #1565C0, #0277BD);
+    border-radius: 20px;
+    padding: 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: -80px;
+    left: 15px;
+    right: 15px;
+    max-width: 1170px;
+    margin: 0 auto;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-cta-box::before, .footer-cta-box::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+}
+.footer-cta-box::before { top: -50%; left: -10%; }
+.footer-cta-box::after { bottom: -50%; right: -10%; }
+
+.cta-text h3 {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.cta-text p {
+    color: #E1F5FE;
+    font-size: 16px;
+    margin: 0;
+}
+
+.cta-btn-pulse {
+    background: #ffffff;
+    color: #0277BD;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    animation: pulseBtn 2s infinite;
+}
+
+.cta-btn-pulse:hover {
+    background: #FFC107;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+@keyframes pulseBtn {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+.footer-main-content {
+    background-color: #0A1929;
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+    padding-top: 130px;
+    padding-bottom: 60px;
+    color: #ffffff;
+}
+
+.footer-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+    gap: 40px;
+}
+
+.f-logo-royal {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.f-logo-royal img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 2px solid #FFC107;
+    background: white;
+}
+
+.f-logo-royal span {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+}
+
+.brand-widget p {
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-size: 15px;
+    color: #e0e0e0;
+    font-weight: 400;
+}
+
+.f-social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-widget .icon-box {
+    width: 42px;
+    height: 42px;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    border-radius: 50%;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.footer-widget .icon-box:hover {
+    background: #FFC107;
+    color: #000;
+    border-color: #FFC107;
+    transform: rotate(360deg);
+}
+
+.widget-title {
+    color: #FFC107;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 12px;
+    display: inline-block;
+}
+
+.widget-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #FFC107;
+    border-radius: 2px;
+}
+
+.footer-widget ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-widget ul li {
+    margin-bottom: 14px;
+}
+
+.footer-widget ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+    font-size: 15px;
+    opacity: 0.85;
+}
+
+.footer-widget ul li a:hover {
+    color: #FFC107;
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.info-list li {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    color: #ffffff;
+}
+
+.info-list i {
+    color: #FFC107;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.info-list span {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+.footer-copyright-royal {
+    background: #050f19;
+    padding: 25px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.copyright-flex {
+    display: flex;
+    justify-content: space-between;
+    color: #cfd8dc;
+    font-size: 14px;
+    align-items: center;
+}
+
+.copyright-flex p {
+    margin: 0;
+}
+
+.highlight-dev {
+    color: #FFC107;
+    font-weight: 700;
+}
+
+/* =========================================
+   SCROLL TO TOP BUTTON
+   ========================================= */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    transition: 0.3s;
+    display: none;
+    z-index: 1000;
+}
+
+.scroll-top-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
+}
+
+/* =========================================
+   RESPONSIVE STYLES
+   ========================================= */
+@media (max-width: 1024px) {
+    .nav-container { padding: 0 20px; }
+    .nav-menu { gap: 20px; }
+    .nav-link { font-size: 16px; }
+    
+    .hero-content {
+        gap: 30px;
+    }
+    
+    .footer-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding: 30px 0;
+        gap: 25px;
+        border-top: 1px solid #eee;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-btn {
+        display: none;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .trust-badges {
+        justify-content: center;
+    }
+    
+    .floating-card {
+        display: none;
+    }
+    
+    .about-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .about-image-container {
+        order: 2;
+    }
+    
+    .about-text-content {
+        order: 1;
+        text-align: center;
+    }
+    
+    .experience-badge {
+        left: 0;
+        bottom: -20px;
+        padding: 15px 20px;
+    }
+    
+    .main-heading {
+        font-size: 32px;
+    }
+    
+    .about-features-grid {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+    
+    .doctors-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    
+    .service-card {
+        padding: 30px 20px;
+    }
+    
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 30px;
+    }
+    
+    .contact-info-grid {
+        order: 1;
+    }
+    
+    .map-social-wrapper {
+        order: 2;
+        min-height: auto;
+    }
+    
+    .map-frame {
+        min-height: 300px;
+    }
+    
+    .phone-numbers {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .call-btn {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .footer-royal { margin-top: 180px; }
+    
+    .footer-cta-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-offer-bar {
+        height: auto;
+        padding: 10px 15px;
+    }
+
+    .offer-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .offer-content span {
+        font-size: 14px;
+        line-height: 1.6;
+        text-align: center;
+        display: block;
+        width: 100%;
+        white-space: normal;
+    }
+
+    .phone-link {
+        display: inline-block;
+        background-color: #FFEB3B;
+        color: #000 !important;
+        padding: 5px 20px;
+        border-radius: 25px;
+        margin-top: 5px;
+        font-weight: 700;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    .offer-btn { display: none; }
+    
+    .navbar {
+        top: 130px !important;
+        position: sticky !important;
+    }
+
+    .nav-menu {
+        top: 200px !important;
+        height: calc(100vh - 200px);
+    }
+    
+    .facility-showcase {
+        padding: 30px 0 40px 0;
+    }
+
+    .showcase-header h3 {
+        font-size: 22px;
+    }
+
+    .gallery-card {
+        width: 220px;
+        height: 150px;
+        border-radius: 10px;
+    }
+    
+    .marquee-content {
+        gap: 15px;
+    }
+    
+    .doctor-image-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .doctor-name {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .f-logo-royal, .f-social-icons, .info-list li {
+        justify-content: center;
+    }
+    
+    .widget-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .copyright-flex {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
+/* =========================================
+   ANIMATION CLASSES
+   ========================================= */
+.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =========================================
+   MOBILE RESPONSIVE FIX (Add at the bottom)
+   ========================================= */
+
+@media (max-width: 768px) {
+    
+    /* ১. কন্টেইনার ফিক্স - যাতে দুই পাশে একটু জায়গা থাকে */
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* ২. কন্টাক্ট কার্ড ফিক্স (২য় ছবির সমস্যা সমাধান) */
+    .contact-info-grid {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .contact-card {
+        width: 100%;
+        margin: 0 0 20px 0; /* নিচে একটু গ্যাপ */
+        box-sizing: border-box; /* বর্ডারসহ সাইজ */
+    }
+    
+    .contact-card .info-content {
+        width: 100%;
+        overflow: hidden; /* লেখা বাইরে যাবে না */
+    }
+
+    /* বাটনগুলো যাতে ভেঙে নিচে না পড়ে যায় */
+    .phone-numbers {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .call-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* ৩. ফুটার নীল বক্স ফিক্স (১ম ছবির সমস্যা সমাধান) */
+    .footer-cta-box {
+        width: 90% !important; /* স্ক্রিনের মাঝে থাকবে */
+        margin: 0 auto 30px auto; /* মাঝখানের জন্য */
+        padding: 20px 15px; /* প্যাডিং কমানো হলো */
+        text-align: center;
+    }
+    
+    .cta-text h3 {
+        font-size: 20px; /* ফন্ট সাইজ একটু কমানো হলো */
+    }
+
+    /* ৪. হিরো সেকশন টেক্সট ফিক্স (যদি লাগে) */
+    .hero-title {
+        font-size: 28px !important;
+        line-height: 1.3;
+    }
+}
+/* =========================================
+   CONTACT SECTION STYLES (FIXED)
+   ========================================= */
+.contact-premium {
+    background-color: #F0F4F8;
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(210,100%,96%,1) 0, transparent 50%), 
+        radial-gradient(at 50% 100%, hsla(200,100%,96%,1) 0, transparent 50%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr;
+    gap: 40px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    border: 1px solid #FFFFFF;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.contact-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.contact-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #F8FBFF;
+    transition: all 0.3s ease;
+    border: 1px solid #E3F2FD;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-card:hover {
+    background: #FFFFFF;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(25, 118, 210, 0.1);
+    border-color: #BBDEFB;
+}
+
+.highlight-card {
+    background: linear-gradient(135deg, #E3F2FD, #FFFFFF);
+    border: 1px solid #90CAF9;
+}
+
+.icon-circle {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+}
+
+.pulse-icon {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(25, 118, 210, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(25, 118, 210, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(25, 118, 210, 0); }
+}
+
+.blue-icon-circle { background: linear-gradient(135deg, #0288D1, #4FC3F7); }
+.green-icon-circle { background: linear-gradient(135deg, #2E7D32, #66BB6A); box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3); }
+.purple-icon-circle { background: linear-gradient(135deg, #7B1FA2, #AB47BC); box-shadow: 0 5px 15px rgba(123, 31, 162, 0.3); }
+
+.info-content {
+    flex: 1;
+    min-width: 0; /* Important for text wrapping */
+}
+
+.info-content h3 {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1A237E;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+.info-content p {
+    font-size: 15px;
+    color: #455A64;
+    margin-bottom: 0;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.phone-numbers {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.call-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.call-btn.primary {
+    background: #FF9800;
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+}
+
+.call-btn.primary:hover {
+    background: #F57C00;
+    transform: scale(1.05);
+}
+
+.call-btn.secondary {
+    background: white;
+    color: #1976D2;
+    border: 1px solid #1976D2;
+}
+
+.call-btn.secondary:hover {
+    background: #E3F2FD;
+}
+
+.email-link {
+    color: #1976D2;
+    text-decoration: none;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+.map-social-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    min-width: 0; /* Important for responsive */
+}
+
+.map-frame {
+    flex-grow: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-height: 350px;
+    border: 5px solid white;
+    width: 100%;
+}
+
+.map-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1976D2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.social-hub {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #E1E8ED;
+    width: 100%;
+}
+
+.social-hub h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #37474F;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.s-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    flex-shrink: 0;
+}
+
+.s-icon:hover {
+    transform: translateY(-5px) rotate(360deg);
+}
+
+.fb { background: #1877F2; }
+.wa { background: #25D366; }
+.yt { background: #FF0000; }
+.ins { background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C); }
+
+/* =========================================
+   RESPONSIVE FIXES FOR CONTACT SECTION
+   ========================================= */
+@media (max-width: 1200px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    
+    .info-content h3 {
+        font-size: 16px;
+    }
+    
+    .info-content p {
+        font-size: 14px;
+    }
+    
+    .icon-circle {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 30px;
+    }
+    
+    .contact-info-grid {
+        order: 1;
+    }
+    
+    .map-social-wrapper {
+        order: 2;
+    }
+    
+    .map-frame {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-wrapper {
+        padding: 20px;
+        gap: 20px;
+        margin: 0 10px;
+        border-radius: 20px;
+    }
+    
+    .contact-card {
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .icon-circle {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .phone-numbers {
+        flex-direction: column;
+    }
+    
+    .call-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .info-content h3 {
+        font-size: 16px;
+    }
+    
+    .info-content p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-premium {
+        padding: 60px 0;
+    }
+    
+    .contact-wrapper {
+        padding: 15px;
+        margin: 0 5px;
+    }
+    
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .info-content {
+        text-align: center;
+    }
+    
+    .info-content h3 {
+        font-size: 15px;
+    }
+    
+    .info-content p {
+        font-size: 13px;
+    }
+    
+    .map-frame {
+        min-height: 250px;
+    }
+}
+/* =========================================
+   PREMIUM HERO SLIDER STYLES
+   ========================================= */
+.premium-slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* মোবাইলের জন্য সাইজ কন্ট্রোল */
+    height: 400px;    /* স্লাইডারের উচ্চতা */
+    border-radius: 20px; /* কোণাগুলো গোল করার জন্য */
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* সুন্দর ছায়া */
+    z-index: 2;
+    background: #fff;
+    border: 5px solid #fff; /* সাদা বর্ডার */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* শুরুতে দেখা যাবে না */
+    transition: opacity 1s ease-in-out; /* স্মুথ ফেইড ইফেক্ট */
+}
+
+.slide.active {
+    opacity: 1; /* শুধু একটিভ স্লাইড দেখা যাবে */
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ছবি চ্যাপ্টা হবে না */
+    animation: zoomEffect 6s infinite linear; /* জুম এনিমেশন */
+}
+
+/* জুম এনিমেশন কিফ্রেম */
+@keyframes zoomEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+/* নিচের গোল ডট বাটন */
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background-color: #00bcd4; /* একটিভ কালার */
+    width: 25px; /* একটু লম্বা হবে */
+    border-radius: 5px;
+}
+
+/* মোবাইলের জন্য সাইজ ঠিক করা */
+@media (max-width: 768px) {
+    .premium-slider {
+        height: 300px;
+        margin: 0 auto; /* মাঝখানে থাকবে */
+    }
+}
+/* =========================================
+   MODERN MARQUEE GALLERY STYLE
+   ========================================= */
+
+.marquee-wrapper {
+    overflow: hidden; /* স্ক্রিনের বাইরের অংশ লুকাবে */
+    white-space: nowrap; /* সব এক লাইনে থাকবে */
+    position: relative;
+    padding: 30px 0;
+    background: #f9fbfd; /* হালকা ব্যাকগ্রাউন্ড */
+}
+
+.marquee-content {
+    display: inline-flex; /* এক লাইনে আনার জন্য */
+    gap: 20px; /* ছবিগুলোর মাঝখানের ফাঁকা */
+    animation: scrollGallery 40s linear infinite; /* ৪০ সেকেন্ডে একবার ঘুরবে */
+}
+
+/* প্রতিটি ছবির বক্স */
+.gallery-card {
+    flex-shrink: 0;
+    width: 300px; /* ছবির চওড়া */
+    height: 200px; /* ছবির উচ্চতা */
+    border-radius: 15px; /* কোণা গোল */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 3px solid #fff;
+}
+
+/* ছবির সাইজ ঠিক রাখা */
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ছবি চ্যাপ্টা হবে না */
+    transition: transform 0.3s ease;
+}
+
+/* হোভার করলে ছবি একটু জুম হবে */
+.gallery-card:hover img {
+    transform: scale(1.1);
+}
+
+/* এনিমেশন কি-ফ্রেম (ডান থেকে বামে চলা) */
+@keyframes scrollGallery {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* মোট দৈর্ঘ্যের অর্ধেক সরবে (যেহেতু ডাবল ছবি আছে) */
+}
+
+/* মোবাইলের জন্য সাইজ এডজাস্টমেন্ট */
+@media (max-width: 600px) {
+    .gallery-card {
+        width: 250px;
+        height: 160px;
+    }
+}/* =========================================
+   COVERFLOW EFFECT STYLES
+   ========================================= */
+.coverflow-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.coverflow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    height: 350px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.gallery-card {
+    position: absolute;
+    width: 280px;
+    height: 220px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    border: 4px solid white;
+    background: white;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Coverflow positions */
+.gallery-card:nth-child(1) { z-index: 5; }
+.gallery-card:nth-child(2) { z-index: 4; }
+.gallery-card:nth-child(3) { z-index: 3; }
+.gallery-card:nth-child(4) { z-index: 2; }
+.gallery-card:nth-child(5) { z-index: 1; }
+.gallery-card:nth-child(n+6) { opacity: 0; visibility: hidden; }
+
+.coverflow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.coverflow-prev,
+.coverflow-next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+}
+
+.coverflow-prev:hover,
+.coverflow-next:hover {
+    background: #FF9800;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+}
+
+.coverflow-prev:active,
+.coverflow-next:active {
+    transform: scale(0.95);
+}
+
+.coverflow-indicator {
+    background: rgba(25, 118, 210, 0.1);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 600;
+    color: #1976D2;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+}
+
+.current-slide {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.total-slides {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* =========================================
+   RESPONSIVE COVERFLOW STYLES
+   ========================================= */
+@media (max-width: 1200px) {
+    .coverflow-wrapper {
+        height: 320px;
+    }
+    
+    .gallery-card {
+        width: 240px;
+        height: 190px;
+    }
+}
+
+@media (max-width: 992px) {
+    .coverflow-wrapper {
+        height: 280px;
+    }
+    
+    .gallery-card {
+        width: 210px;
+        height: 170px;
+    }
+}
+
+@media (max-width: 768px) {
+    .coverflow-container {
+        padding: 30px 15px;
+    }
+    
+    .coverflow-wrapper {
+        height: 220px;
+        perspective: 800px;
+    }
+    
+    .gallery-card {
+        width: 180px;
+        height: 140px;
+        border-width: 3px;
+    }
+    
+    .coverflow-controls {
+        gap: 20px;
+    }
+    
+    .coverflow-prev,
+    .coverflow-next {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .coverflow-indicator {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .coverflow-wrapper {
+        height: 200px;
+    }
+    
+    .gallery-card {
+        width: 160px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    .coverflow-wrapper {
+        height: 180px;
+        perspective: 600px;
+    }
+    
+    .gallery-card {
+        width: 140px;
+        height: 110px;
+        border-width: 2px;
+        border-radius: 12px;
+    }
+    
+    .coverflow-prev,
+    .coverflow-next {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+/* Touch swipe support */
+.coverflow-wrapper {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Active card highlight */
+.gallery-card.active {
+    border-color: #FF9800;
+    box-shadow: 0 15px 35px rgba(255, 152, 0, 0.3);
+}
+/* =========================================
+   MODERN SHOWCASE HEADER STYLES
+   ========================================= */
+.modern-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 30px;
+    background: linear-gradient(135deg, 
+        rgba(25, 118, 210, 0.05) 0%, 
+        rgba(255, 255, 255, 0.9) 50%,
+        rgba(255, 152, 0, 0.05) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(25, 118, 210, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        #1976D2, 
+        #FF9800, 
+        #1976D2);
+    border-radius: 4px 4px 0 0;
+}
+
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    animation: badgePulse 3s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.section-title-glow {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0D47A1;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(25, 118, 210, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title-glow::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #1976D2, #FF9800);
+    border-radius: 2px;
+}
+
+.section-subtitle-modern {
+    font-size: 18px;
+    color: #546E7A;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    line-height: 1.6;
+}
+
+.highlight-word {
+    background: linear-gradient(120deg, 
+        rgba(255, 235, 59, 0.3) 0%,
+        rgba(255, 235, 59, 0.3) 100%);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #0D47A1;
+}
+
+.header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(25, 118, 210, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(25, 118, 210, 0.15);
+}
+
+.stat-item i {
+    color: #1976D2;
+    font-size: 18px;
+    background: rgba(25, 118, 210, 0.1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.stat-item span {
+    font-weight: 600;
+    color: #37474F;
+    font-size: 15px;
+}
+
+/* =========================================
+   ENHANCED GALLERY CARD WITH CAPTION
+   ========================================= */
+.gallery-card {
+    position: absolute;
+    width: 320px; /* একটু বড় করা হলো */
+    height: 380px; /* হাইট বাড়ানো হলো ক্যাপশনের জন্য */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    background: white;
+    border: none;
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 220px; /* ছবির হাইট নির্দিষ্ট */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.image-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1976D2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.card-caption {
+    padding: 20px;
+    background: white;
+    height: 160px; /* ক্যাপশনের হাইট নির্দিষ্ট */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.caption-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0D47A1;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.caption-desc {
+    font-size: 14px;
+    color: #546E7A;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.caption-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(25, 118, 210, 0.1);
+    color: #1976D2;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: #1976D2;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* কার্ড হোভার ইফেক্ট */
+.gallery-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.gallery-card:hover {
+    box-shadow: 0 20px 40px rgba(25, 118, 210, 0.2);
+}
+
+/* Active card highlight */
+.gallery-card.active {
+    box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
+    border: 2px solid #FF9800;
+}
+
+.gallery-card.active .card-caption {
+    background: linear-gradient(to bottom, #FFF3E0, white);
+}
+
+/* =========================================
+   CASE STUDY NOTE
+   ========================================= */
+.case-study-note {
+    background: linear-gradient(135deg, #E3F2FD, #F3E5F5);
+    border-left: 4px solid #1976D2;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.case-study-note i {
+    color: #1976D2;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.case-study-note span {
+    font-size: 14px;
+    color: #455A64;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* =========================================
+   RESPONSIVE ENHANCEMENTS
+   ========================================= */
+@media (max-width: 1200px) {
+    .gallery-card {
+        width: 290px;
+        height: 350px;
+    }
+    
+    .card-image {
+        height: 200px;
+    }
+    
+    .card-caption {
+        height: 150px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-title-glow {
+        font-size: 36px;
+    }
+    
+    .gallery-card {
+        width: 260px;
+        height: 320px;
+    }
+    
+    .card-image {
+        height: 180px;
+    }
+    
+    .card-caption {
+        height: 140px;
+    }
+    
+    .caption-title {
+        font-size: 16px;
+    }
+    
+    .caption-desc {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modern-header {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .section-title-glow {
+        font-size: 28px;
+    }
+    
+    .section-subtitle-modern {
+        font-size: 16px;
+    }
+    
+    .header-stats {
+        gap: 15px;
+    }
+    
+    .stat-item {
+        padding: 10px 15px;
+    }
+    
+    .stat-item span {
+        font-size: 13px;
+    }
+    
+    .gallery-card {
+        width: 220px;
+        height: 280px;
+    }
+    
+    .card-image {
+        height: 150px;
+    }
+    
+    .card-caption {
+        height: 130px;
+        padding: 12px;
+    }
+    
+    .caption-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .caption-desc {
+        font-size: 12px;
+        margin-bottom: 10px;
+        -webkit-line-clamp: 2;
+    }
+    
+    .image-badge {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+    
+    .tag {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-card {
+        width: 200px;
+        height: 260px;
+    }
+    
+    .card-image {
+        height: 140px;
+    }
+    
+    .card-caption {
+        height: 120px;
+    }
+    
+    .case-study-note {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-card {
+        width: 180px;
+        height: 240px;
+    }
+    
+    .card-image {
+        height: 130px;
+    }
+    
+    .card-caption {
+        height: 110px;
+        padding: 10px;
+    }
+    
+    .caption-title {
+        font-size: 13px;
+    }
+    
+    .caption-desc {
+        font-size: 11px;
+        -webkit-line-clamp: 2;
+    }
+}
+
+/* টাচ ফ্রেন্ডলি স্টাইল */
+.gallery-card {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* কার্ড সিলেকশন ইফেক্ট */
+.gallery-card:focus {
+    outline: 2px solid #1976D2;
+    outline-offset: 2px;
+}
