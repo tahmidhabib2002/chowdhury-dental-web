@@ -504,79 +504,1255 @@ p {
 }
 
 /* =========================================
-   FACILITY SHOWCASE STYLES
+   COVERFLOW EFFECT STYLES - FIXED VERSION
    ========================================= */
-.facility-showcase {
-    background: #F0F4F8;
-    padding: 40px 0 60px 0;
-    overflow: hidden;
-    border-top: 1px solid #E1E8ED;
-}
-
-.showcase-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding: 0 15px;
-}
-
-.showcase-header h3 {
-    font-family: 'Noto Sans Bengali', sans-serif;
-    color: #0D47A1;
-    font-size: 28px;
-    margin-bottom: 5px;
-}
-
-.showcase-header p {
-    color: #546E7A;
-    font-size: 14px;
-}
-
-.marquee-wrapper {
+.coverflow-container {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px; /* ফিক্সড উচ্চতা যোগ করুন */
+}
+
+.coverflow-wrapper {
     display: flex;
     align-items: center;
-    overflow: hidden;
-}
-
-.marquee-content {
-    display: flex;
-    gap: 20px;
-    animation: scrollGallery 30s linear infinite;
-    width: max-content;
-}
-
-.marquee-content:hover {
-    animation-play-state: paused;
+    justify-content: center;
+    perspective: 1000px;
+    height: 420px; /* উচ্চতা বাড়ানো হয়েছে */
+    position: relative;
+    margin-bottom: 40px;
+    min-width: 100%;
 }
 
 .gallery-card {
-    width: 320px;
-    height: 220px;
-    border-radius: 12px;
+    position: absolute;
+    width: 320px; /* একটু বড় করা হলো */
+    height: 380px; /* হাইট বাড়ানো হলো ক্যাপশনের জন্য */
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
     background: white;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    border: 4px solid #fff;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
+    border: none;
+    will-change: transform, opacity; /* পারফরম্যান্সের জন্য */
+    backface-visibility: hidden; /* 3D ইফেক্টের জন্য */
 }
 
-.gallery-card:hover {
-    transform: scale(1.05);
-    border-color: #1976D2;
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 220px; /* ছবির হাইট নির্দিষ্ট */
+    overflow: hidden;
 }
 
-.gallery-card img,
-.gallery-card video {
+.card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-@keyframes scrollGallery {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+.image-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1976D2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    z-index: 2;
 }
+
+.card-caption {
+    padding: 20px;
+    background: white;
+    height: 160px; /* ক্যাপশনের হাইট নির্দিষ্ট */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* টেক্সট ওভারফ্লো কন্ট্রোল */
+}
+
+.caption-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0D47A1;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    height: 2.6em; /* ২ লাইনের জন্য */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.caption-desc {
+    font-size: 14px;
+    color: #546E7A;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    height: 4.5em; /* ৩ লাইনের জন্য */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.caption-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.tag {
+    background: rgba(25, 118, 210, 0.1);
+    color: #1976D2;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tag:hover {
+    background: #1976D2;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* কার্ড হোভার ইফেক্ট */
+.gallery-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.gallery-card:hover {
+    box-shadow: 0 20px 40px rgba(25, 118, 210, 0.2);
+}
+
+/* Active card highlight */
+.gallery-card.active {
+    box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
+    border: 2px solid #FF9800;
+}
+
+.gallery-card.active .card-caption {
+    background: linear-gradient(to bottom, #FFF3E0, white);
+}
+
+/* কভারফ্লো কন্ট্রোলস */
+.coverflow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.coverflow-prev,
+.coverflow-next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+    position: relative;
+    z-index: 20;
+}
+
+.coverflow-prev:hover,
+.coverflow-next:hover {
+    background: #FF9800;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+}
+
+.coverflow-prev:active,
+.coverflow-next:active {
+    transform: scale(0.95);
+}
+
+.coverflow-indicator {
+    background: rgba(25, 118, 210, 0.1);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 600;
+    color: #1976D2;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    position: relative;
+    z-index: 20;
+}
+
+.current-slide {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.total-slides {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+//* =========================================
+   COMPLETE COVERFLOW FIX FOR ALL DEVICES
+   ========================================= */
+.coverflow-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    overflow: visible !important; /* ওভারফ্লো ভিজিবল রাখা */
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coverflow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    height: 450px; /* ডেস্কটপের জন্য উচ্চতা */
+    position: relative;
+    margin-bottom: 40px;
+    min-width: 100%;
+    overflow: visible !important; /* গুরুত্বপূর্ণ */
+}
+
+.gallery-card {
+    position: absolute;
+    width: 350px; /* ডেস্কটপের জন্য বড় সাইজ */
+    height: 420px; /* উচ্চতা বাড়ানো */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    background: white;
+    border: none;
+    will-change: transform, opacity, z-index;
+    backface-visibility: hidden;
+    z-index: 1; /* ডিফল্ট z-index */
+}
+
+/* সব কার্ড দেখা যাবে - কোন কার্ড লুকানো হবে না */
+.gallery-card:nth-child(n+6) {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 240px; /* ছবির এলাকা বাড়ানো */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.image-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1976D2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.card-caption {
+    padding: 25px;
+    background: white;
+    height: 180px; /* ক্যাপশন এলাকা বাড়ানো */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+}
+
+.caption-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0D47A1;
+    margin-bottom: 12px;
+    line-height: 1.3;
+    height: 2.6em; /* ২ লাইনের জন্য */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+.caption-desc {
+    font-size: 15px;
+    color: #546E7A;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    height: 4.8em; /* ৩ লাইনের জন্য */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    flex-grow: 1;
+}
+
+.caption-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    justify-content: flex-start;
+}
+
+.tag {
+    background: rgba(25, 118, 210, 0.1);
+    color: #1976D2;
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.tag:hover {
+    background: #1976D2;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* কার্ড হোভার ইফেক্ট */
+.gallery-card:hover .card-image img {
+    transform: scale(1.08);
+}
+
+.gallery-card:hover {
+    box-shadow: 0 25px 50px rgba(25, 118, 210, 0.25);
+    transform: translateY(-5px) !important;
+}
+
+/* Active card highlight */
+.gallery-card.active {
+    box-shadow: 0 30px 60px rgba(255, 152, 0, 0.3) !important;
+    border: 3px solid #FF9800 !important;
+    z-index: 1000 !important; /* সর্বোচ্চ z-index */
+}
+
+.gallery-card.active .card-caption {
+    background: linear-gradient(to bottom, #FFF3E0, white);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN FOR ALL DEVICES
+   ========================================= */
+
+/* ল্যাপটপ/ডেস্কটপ (1200px এর বেশি) */
+@media (min-width: 1200px) {
+    .coverflow-wrapper {
+        height: 450px;
+    }
+    
+    .gallery-card {
+        width: 350px;
+        height: 420px;
+    }
+    
+    .card-image {
+        height: 240px;
+    }
+    
+    .card-caption {
+        height: 180px;
+        padding: 25px;
+    }
+}
+
+/* ট্যাবলেট ল্যান্ডস্কেপ (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .coverflow-wrapper {
+        height: 420px;
+    }
+    
+    .gallery-card {
+        width: 320px;
+        height: 390px;
+    }
+    
+    .card-image {
+        height: 220px;
+    }
+    
+    .card-caption {
+        height: 170px;
+        padding: 20px;
+    }
+    
+    .caption-title {
+        font-size: 18px;
+    }
+    
+    .caption-desc {
+        font-size: 14px;
+    }
+}
+
+/* ট্যাবলেট পোর্ট্রেট (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .coverflow-container {
+        min-height: 420px;
+        padding: 30px 15px;
+    }
+    
+    .coverflow-wrapper {
+        height: 380px;
+        perspective: 1000px;
+    }
+    
+    .gallery-card {
+        width: 280px;
+        height: 350px;
+    }
+    
+    .card-image {
+        height: 200px;
+    }
+    
+    .card-caption {
+        height: 150px;
+        padding: 18px;
+    }
+    
+    .caption-title {
+        font-size: 17px;
+        height: 2.4em;
+    }
+    
+    .caption-desc {
+        font-size: 14px;
+        height: 4.2em;
+    }
+    
+    .tag {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+}
+
+/* মোবাইল ল্যান্ডস্কেপ (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .coverflow-container {
+        min-height: 380px;
+        padding: 25px 10px;
+    }
+    
+    .coverflow-wrapper {
+        height: 340px;
+        perspective: 800px;
+    }
+    
+    .gallery-card {
+        width: 240px;
+        height: 320px;
+    }
+    
+    .card-image {
+        height: 180px;
+    }
+    
+    .card-caption {
+        height: 140px;
+        padding: 15px;
+    }
+    
+    .caption-title {
+        font-size: 16px;
+        height: 2.2em;
+    }
+    
+    .caption-desc {
+        font-size: 13px;
+        height: 3.9em;
+        -webkit-line-clamp: 3; /* ৩ লাইন দেখাবে */
+    }
+    
+    .image-badge {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .tag {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+}
+
+/* মোবাইল পোর্ট্রেট (480px - 575px) */
+@media (min-width: 480px) and (max-width: 575px) {
+    .coverflow-container {
+        min-height: 350px;
+        padding: 20px 8px;
+    }
+    
+    .coverflow-wrapper {
+        height: 310px;
+        perspective: 700px;
+    }
+    
+    .gallery-card {
+        width: 220px;
+        height: 300px;
+    }
+    
+    .card-image {
+        height: 170px;
+    }
+    
+    .card-caption {
+        height: 130px;
+        padding: 12px;
+    }
+    
+    .caption-title {
+        font-size: 15px;
+        height: 2.6em;
+        -webkit-line-clamp: 2;
+    }
+    
+    .caption-desc {
+        font-size: 12px;
+        height: 3.6em;
+        -webkit-line-clamp: 3;
+    }
+    
+    .caption-tags {
+        gap: 6px;
+    }
+    
+    .tag {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}
+
+/* ছোট মোবাইল (360px - 479px) */
+@media (min-width: 360px) and (max-width: 479px) {
+    .coverflow-container {
+        min-height: 320px;
+        padding: 15px 5px;
+    }
+    
+    .coverflow-wrapper {
+        height: 280px;
+        perspective: 600px;
+    }
+    
+    .gallery-card {
+        width: 200px;
+        height: 280px;
+    }
+    
+    .card-image {
+        height: 160px;
+    }
+    
+    .card-caption {
+        height: 120px;
+        padding: 10px;
+    }
+    
+    .caption-title {
+        font-size: 14px;
+        height: 2.4em;
+        -webkit-line-clamp: 2;
+    }
+    
+    .caption-desc {
+        font-size: 11px;
+        height: 3.3em;
+        -webkit-line-clamp: 3;
+        display: -webkit-box !important; /* ফোর্সডি দেখানো */
+    }
+    
+    .tag {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+}
+
+/* খুব ছোট মোবাইল (359px পর্যন্ত) */
+@media (max-width: 359px) {
+    .coverflow-container {
+        min-height: 300px;
+        padding: 10px 3px;
+    }
+    
+    .coverflow-wrapper {
+        height: 260px;
+        perspective: 500px;
+    }
+    
+    .gallery-card {
+        width: 180px;
+        height: 260px;
+    }
+    
+    .card-image {
+        height: 150px;
+    }
+    
+    .card-caption {
+        height: 110px;
+        padding: 8px;
+    }
+    
+    .caption-title {
+        font-size: 13px;
+        height: 2.6em;
+        -webkit-line-clamp: 2;
+    }
+    
+    .caption-desc {
+        font-size: 10px;
+        height: 3.0em;
+        -webkit-line-clamp: 2; /* খুব ছোট স্ক্রিনে ২ লাইন */
+    }
+    
+    .caption-tags {
+        gap: 4px;
+    }
+    
+    .tag {
+        font-size: 8px;
+        padding: 2px 5px;
+    }
+}
+
+/* কভারফ্লো কন্ট্রোলস স্টাইল */
+.coverflow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+}
+
+.coverflow-prev,
+.coverflow-next {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(25, 118, 210, 0.3);
+    position: relative;
+    z-index: 20;
+}
+
+.coverflow-prev:hover,
+.coverflow-next:hover {
+    background: #FF9800;
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+}
+
+.coverflow-indicator {
+    background: rgba(25, 118, 210, 0.1);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 600;
+    color: #1976D2;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    position: relative;
+    z-index: 20;
+    font-size: 16px;
+}
+
+.current-slide {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.total-slides {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+/* =========================================
+   CASE STUDY NOTE - FIXED
+   ========================================= */
+.case-study-note {
+    background: linear-gradient(135deg, #E3F2FD, #F3E5F5);
+    border-left: 4px solid #1976D2;
+    padding: 18px 25px;
+    border-radius: 12px;
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 5;
+    width: 90%;
+}
+
+.case-study-note i {
+    color: #1976D2;
+    font-size: 26px;
+    flex-shrink: 0;
+}
+
+.case-study-note span {
+    font-size: 15px;
+    color: #455A64;
+    font-weight: 500;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+/* মোবাইলের জন্য নোট স্টাইল */
+@media (max-width: 768px) {
+    .case-study-note {
+        padding: 15px 20px;
+        gap: 12px;
+        margin-top: 25px;
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .case-study-note i {
+        font-size: 22px;
+    }
+    
+    .case-study-note span {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .case-study-note {
+        padding: 12px 15px;
+        gap: 10px;
+        margin-top: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* টেক্সট ওভারফ্লো প্রতিরোধ */
+.caption-title,
+.caption-desc {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+}
+
+/* কার্ডের জন্য অতিরিক্ত স্পেস নিশ্চিতকরণ */
+.gallery-card {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* স্ক্রিনের বাইরের কার্ড হ্যান্ডেলিং */
+.gallery-card.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.gallery-card.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* =========================================
+   MOBILE SPECIFIC FIXES - SIMPLE VERSION
+   ========================================= */
+@media (max-width: 768px) {
+    /* কভারফ্লো কন্টেইনার ফিক্স */
+    .coverflow-container {
+        min-height: 400px !important;
+        padding: 15px 5px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    /* কভারফ্লো র‍্যাপার */
+    .coverflow-wrapper {
+        height: 350px !important;
+        perspective: 800px;
+        margin: 0 auto 20px auto !important;
+        width: 100% !important;
+        position: relative !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    /* প্রতিটি কার্ড ফিক্স */
+    .gallery-card {
+        width: 85vw !important; /* ভিউপোর্টের 85% */
+        max-width: 300px !important;
+        height: auto !important; /* অটো হাইট */
+        min-height: 380px !important;
+        position: absolute !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 15px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+        background: white !important;
+        overflow: visible !important;
+        z-index: 1 !important;
+    }
+    
+    /* সেন্টার কার্ড (একটিভ) */
+    .gallery-card.active {
+        width: 90vw !important; /* একটু বড় */
+        max-width: 320px !important;
+        min-height: 420px !important;
+        z-index: 1000 !important;
+        box-shadow: 0 15px 35px rgba(255,152,0,0.25) !important;
+        border: 3px solid #FF9800 !important;
+    }
+    
+    /* কার্ড ইমেজ অংশ */
+    .card-image {
+        width: 100% !important;
+        height: 180px !important; /* ফিক্সড হাইট */
+        border-radius: 15px 15px 0 0 !important;
+        overflow: hidden !important;
+    }
+    
+    .card-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+    
+    /* ইমেজ ব্যাজ */
+    .image-badge {
+        position: absolute !important;
+        top: 12px !important;
+        right: 12px !important;
+        background: rgba(255,255,255,0.95) !important;
+        padding: 6px 12px !important;
+        border-radius: 20px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        color: #1976D2 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 5px !important;
+        z-index: 2 !important;
+        white-space: nowrap !important;
+    }
+    
+    /* ক্যাপশন অংশ - এখানে সবচেয়ে গুরুত্বপূর্ণ */
+    .card-caption {
+        padding: 15px !important;
+        background: white !important;
+        height: auto !important; /* অটো হাইট */
+        min-height: 200px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        border-radius: 0 0 15px 15px !important;
+        overflow: visible !important;
+        position: relative !important;
+    }
+    
+    /* টাইটেল - একদম উপরে */
+    .caption-title {
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        color: #0D47A1 !important;
+        margin-bottom: 8px !important;
+        line-height: 1.3 !important;
+        height: auto !important; /* অটো হাইট */
+        min-height: 40px !important; /* কমপক্ষে ২ লাইন */
+        overflow: visible !important;
+        display: block !important; /* -webkit-box ব্যবহার করবেন না */
+        word-break: break-word !important;
+        white-space: normal !important;
+        text-overflow: unset !important;
+    }
+    
+    /* ডেসক্রিপশন - মাঝখানে */
+    .caption-desc {
+        font-size: 13px !important;
+        color: #546E7A !important;
+        line-height: 1.5 !important;
+        margin-bottom: 12px !important;
+        height: auto !important; /* অটো হাইট */
+        min-height: 60px !important; /* কমপক্ষে ৩ লাইন */
+        overflow: visible !important;
+        display: block !important; /* -webkit-box ব্যবহার করবেন না */
+        word-break: break-word !important;
+        white-space: normal !important;
+        text-overflow: unset !important;
+        flex-grow: 1 !important;
+    }
+    
+    /* ট্যাগস - একদম নিচে */
+    .caption-tags {
+        display: flex !important;
+        gap: 6px !important;
+        flex-wrap: wrap !important;
+        margin-top: auto !important; /* একদম নিচে পাঠানো */
+        justify-content: flex-start !important;
+    }
+    
+    .tag {
+        background: rgba(25, 118, 210, 0.1) !important;
+        color: #1976D2 !important;
+        padding: 4px 10px !important;
+        border-radius: 12px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        border: 1px solid rgba(25, 118, 210, 0.2) !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+    }
+    
+    /* সাইড কার্ডগুলোর স্টাইল */
+    .gallery-card:not(.active) {
+        opacity: 0.6 !important;
+        transform: scale(0.85) !important;
+        z-index: 1 !important;
+    }
+    
+    /* কন্ট্রোলস */
+    .coverflow-controls {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 20px !important;
+        margin-top: 15px !important;
+        z-index: 1000 !important;
+        position: relative !important;
+    }
+    
+    .coverflow-prev,
+    .coverflow-next {
+        width: 45px !important;
+        height: 45px !important;
+        background: #1976D2 !important;
+        color: white !important;
+        font-size: 18px !important;
+    }
+    
+    .coverflow-indicator {
+        padding: 6px 15px !important;
+        font-size: 14px !important;
+    }
+    
+    /* হেডার ফিক্স */
+    .modern-header {
+        padding: 15px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .section-title-glow {
+        font-size: 22px !important;
+    }
+    
+    .section-subtitle-modern {
+        font-size: 14px !important;
+    }
+    
+    /* কেস স্টাডি নোট */
+    .case-study-note {
+        margin-top: 20px !important;
+        padding: 12px 15px !important;
+        font-size: 12px !important;
+        width: 95% !important;
+    }
+}
+
+/* ছোট মোবাইলের জন্য অতিরিক্ত ফিক্স */
+@media (max-width: 480px) {
+    .coverflow-wrapper {
+        height: 320px !important;
+    }
+    
+    .gallery-card {
+        width: 90vw !important;
+        min-height: 350px !important;
+    }
+    
+    .gallery-card.active {
+        width: 95vw !important;
+        min-height: 380px !important;
+    }
+    
+    .card-image {
+        height: 160px !important;
+    }
+    
+    .card-caption {
+        padding: 12px !important;
+        min-height: 190px !important;
+    }
+    
+    .caption-title {
+        font-size: 15px !important;
+        min-height: 35px !important;
+    }
+    
+    .caption-desc {
+        font-size: 12px !important;
+        min-height: 55px !important;
+    }
+    
+    .tag {
+        font-size: 10px !important;
+        padding: 3px 8px !important;
+    }
+}
+
+/* খুব ছোট মোবাইল */
+@media (max-width: 360px) {
+    .coverflow-wrapper {
+        height: 300px !important;
+    }
+    
+    .gallery-card {
+        min-height: 320px !important;
+    }
+    
+    .gallery-card.active {
+        min-height: 350px !important;
+    }
+    
+    .card-image {
+        height: 150px !important;
+    }
+    
+    .card-caption {
+        padding: 10px !important;
+        min-height: 170px !important;
+    }
+    
+    .caption-title {
+        font-size: 14px !important;
+        min-height: 32px !important;
+    }
+    
+    .caption-desc {
+        font-size: 11px !important;
+        min-height: 50px !important;
+    }
+}
+
+/* মোবাইলের জন্য জাভাস্ক্রিপ্ট আপডেট */
+@media (max-width: 768px) {
+    .gallery-card {
+        transition: transform 0.4s ease, opacity 0.4s ease !important;
+    }
+}
+/* =========================================
+   COMPLETE MOBILE FIX FOR IMAGE CUTTING
+   ========================================= */
+@media (max-width: 768px) {
+    /* স্টেপ ১: কভারফ্লো কন্টেইনার */
+    .coverflow-container {
+        min-height: 420px !important;
+        padding: 10px 0 !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    /* স্টেপ ২: র‍্যাপার */
+    .coverflow-wrapper {
+        height: 380px !important;
+        margin: 0 auto 10px auto !important;
+        padding: 10px 0 !important;
+        position: relative !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important; /* উপরে অ্যালাইন */
+    }
+    
+    /* স্টেপ ৩: কার্ড স্ট্রাকচার */
+    .gallery-card {
+        width: 280px !important;
+        height: auto !important;
+        min-height: 400px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 15px !important;
+        background: white !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+    }
+    
+    /* স্টেপ ৪: ইমেজ কন্টেইনার (সবচেয়ে গুরুত্বপূর্ণ) */
+    .card-image {
+        width: 100% !important;
+        height: 200px !important; /* ফিক্সড হাইট */
+        min-height: 200px !important; /* কম না হবে */
+        max-height: 200px !important; /* বেশি না হবে */
+        flex-shrink: 0 !important; /* সাইজ কমবে না */
+        position: relative !important;
+        overflow: hidden !important;
+        border-radius: 15px 15px 0 0 !important;
+        background: #f5f5f5 !important; /* ব্যাকআপ কালার */
+    }
+    
+    /* স্টেপ ৫: ইমেজ নিজে */
+    .card-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        display: block !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        margin: auto !important; /* পূর্ণ কেন্দ্রিক */
+    }
+    
+    /* স্টেপ ৬: একটিভ কার্ড */
+    .gallery-card.active {
+        width: 300px !important;
+        min-height: 420px !important;
+        z-index: 1000 !important;
+    }
+    
+    .gallery-card.active .card-image {
+        height: 220px !important;
+        min-height: 220px !important;
+        max-height: 220px !important;
+    }
+    
+    /* স্টেপ ৭: ক্যাপশন */
+    .card-caption {
+        padding: 15px !important;
+        flex: 1 !important; /* বাকি জায়গা নেবে */
+        min-height: 200px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: white !important;
+    }
+    
+    /* স্টেপ ৮: ব্যাজ */
+    .image-badge {
+        top: 10px !important;
+        right: 10px !important;
+        z-index: 2 !important;
+    }
+    
+    /* স্টেপ ৯: ট্রান্সফর্ম ঠিক করা */
+    .gallery-card:not(.active) {
+        transform: scale(0.85) !important;
+        opacity: 0.7 !important;
+    }
+}
+
+/* ছোট মোবাইলের জন্য */
+@media (max-width: 480px) {
+    .coverflow-wrapper {
+        height: 360px !important;
+    }
+    
+    .gallery-card {
+        width: 260px !important;
+        min-height: 380px !important;
+    }
+    
+    .card-image {
+        height: 180px !important;
+        min-height: 180px !important;
+        max-height: 180px !important;
+    }
+    
+    .gallery-card.active {
+        width: 280px !important;
+        min-height: 400px !important;
+    }
+    
+    .gallery-card.active .card-image {
+        height: 200px !important;
+        min-height: 200px !important;
+        max-height: 200px !important;
+    }
+}
+
 
 /* =========================================
    ABOUT SECTION STYLES
@@ -2325,4 +3501,667 @@ p {
         width: 250px;
         height: 160px;
     }
+}/* =========================================
+   COVERFLOW EFFECT STYLES
+   ========================================= */
+.coverflow-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.coverflow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    height: 350px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.gallery-card {
+    position: absolute;
+    width: 280px;
+    height: 220px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    border: 4px solid white;
+    background: white;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Coverflow positions */
+.gallery-card:nth-child(1) { z-index: 5; }
+.gallery-card:nth-child(2) { z-index: 4; }
+.gallery-card:nth-child(3) { z-index: 3; }
+.gallery-card:nth-child(4) { z-index: 2; }
+.gallery-card:nth-child(5) { z-index: 1; }
+.gallery-card:nth-child(n+6) { opacity: 0; visibility: hidden; }
+
+.coverflow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.coverflow-prev,
+.coverflow-next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+}
+
+.coverflow-prev:hover,
+.coverflow-next:hover {
+    background: #FF9800;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+}
+
+.coverflow-prev:active,
+.coverflow-next:active {
+    transform: scale(0.95);
+}
+
+.coverflow-indicator {
+    background: rgba(25, 118, 210, 0.1);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 600;
+    color: #1976D2;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+}
+
+.current-slide {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.total-slides {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* =========================================
+   RESPONSIVE COVERFLOW STYLES
+   ========================================= */
+@media (max-width: 1200px) {
+    .coverflow-wrapper {
+        height: 320px;
+    }
+    
+    .gallery-card {
+        width: 240px;
+        height: 190px;
+    }
+}
+
+@media (max-width: 992px) {
+    .coverflow-wrapper {
+        height: 280px;
+    }
+    
+    .gallery-card {
+        width: 210px;
+        height: 170px;
+    }
+}
+
+@media (max-width: 768px) {
+    .coverflow-container {
+        padding: 30px 15px;
+    }
+    
+    .coverflow-wrapper {
+        height: 220px;
+        perspective: 800px;
+    }
+    
+    .gallery-card {
+        width: 180px;
+        height: 140px;
+        border-width: 3px;
+    }
+    
+    .coverflow-controls {
+        gap: 20px;
+    }
+    
+    .coverflow-prev,
+    .coverflow-next {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .coverflow-indicator {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .coverflow-wrapper {
+        height: 200px;
+    }
+    
+    .gallery-card {
+        width: 160px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    .coverflow-wrapper {
+        height: 180px;
+        perspective: 600px;
+    }
+    
+    .gallery-card {
+        width: 140px;
+        height: 110px;
+        border-width: 2px;
+        border-radius: 12px;
+    }
+    
+    .coverflow-prev,
+    .coverflow-next {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+/* Touch swipe support */
+.coverflow-wrapper {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Active card highlight */
+.gallery-card.active {
+    border-color: #FF9800;
+    box-shadow: 0 15px 35px rgba(255, 152, 0, 0.3);
+}
+/* =========================================
+   MODERN SHOWCASE HEADER STYLES
+   ========================================= */
+.modern-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 30px;
+    background: linear-gradient(135deg, 
+        rgba(25, 118, 210, 0.05) 0%, 
+        rgba(255, 255, 255, 0.9) 50%,
+        rgba(255, 152, 0, 0.05) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(25, 118, 210, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        #1976D2, 
+        #FF9800, 
+        #1976D2);
+    border-radius: 4px 4px 0 0;
+}
+
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #1976D2, #42A5F5);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    animation: badgePulse 3s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.section-title-glow {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0D47A1;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(25, 118, 210, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title-glow::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #1976D2, #FF9800);
+    border-radius: 2px;
+}
+
+.section-subtitle-modern {
+    font-size: 18px;
+    color: #546E7A;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    line-height: 1.6;
+}
+
+.highlight-word {
+    background: linear-gradient(120deg, 
+        rgba(255, 235, 59, 0.3) 0%,
+        rgba(255, 235, 59, 0.3) 100%);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #0D47A1;
+}
+
+.header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(25, 118, 210, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(25, 118, 210, 0.15);
+}
+
+.stat-item i {
+    color: #1976D2;
+    font-size: 18px;
+    background: rgba(25, 118, 210, 0.1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.stat-item span {
+    font-weight: 600;
+    color: #37474F;
+    font-size: 15px;
+}
+
+/* =========================================
+   ENHANCED GALLERY CARD WITH CAPTION
+   ========================================= */
+.gallery-card {
+    position: absolute;
+    width: 320px; /* একটু বড় করা হলো */
+    height: 380px; /* হাইট বাড়ানো হলো ক্যাপশনের জন্য */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    background: white;
+    border: none;
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 220px; /* ছবির হাইট নির্দিষ্ট */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.image-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1976D2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.card-caption {
+    padding: 20px;
+    background: white;
+    height: 160px; /* ক্যাপশনের হাইট নির্দিষ্ট */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.caption-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0D47A1;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.caption-desc {
+    font-size: 14px;
+    color: #546E7A;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.caption-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(25, 118, 210, 0.1);
+    color: #1976D2;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(25, 118, 210, 0.2);
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: #1976D2;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* কার্ড হোভার ইফেক্ট */
+.gallery-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.gallery-card:hover {
+    box-shadow: 0 20px 40px rgba(25, 118, 210, 0.2);
+}
+
+/* Active card highlight */
+.gallery-card.active {
+    box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
+    border: 2px solid #FF9800;
+}
+
+.gallery-card.active .card-caption {
+    background: linear-gradient(to bottom, #FFF3E0, white);
+}
+
+/* =========================================
+   CASE STUDY NOTE
+   ========================================= */
+.case-study-note {
+    background: linear-gradient(135deg, #E3F2FD, #F3E5F5);
+    border-left: 4px solid #1976D2;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.case-study-note i {
+    color: #1976D2;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.case-study-note span {
+    font-size: 14px;
+    color: #455A64;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* =========================================
+   RESPONSIVE ENHANCEMENTS
+   ========================================= */
+@media (max-width: 1200px) {
+    .gallery-card {
+        width: 290px;
+        height: 350px;
+    }
+    
+    .card-image {
+        height: 200px;
+    }
+    
+    .card-caption {
+        height: 150px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-title-glow {
+        font-size: 36px;
+    }
+    
+    .gallery-card {
+        width: 260px;
+        height: 320px;
+    }
+    
+    .card-image {
+        height: 180px;
+    }
+    
+    .card-caption {
+        height: 140px;
+    }
+    
+    .caption-title {
+        font-size: 16px;
+    }
+    
+    .caption-desc {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modern-header {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .section-title-glow {
+        font-size: 28px;
+    }
+    
+    .section-subtitle-modern {
+        font-size: 16px;
+    }
+    
+    .header-stats {
+        gap: 15px;
+    }
+    
+    .stat-item {
+        padding: 10px 15px;
+    }
+    
+    .stat-item span {
+        font-size: 13px;
+    }
+    
+    .gallery-card {
+        width: 220px;
+        height: 280px;
+    }
+    
+    .card-image {
+        height: 150px;
+    }
+    
+    .card-caption {
+        height: 130px;
+        padding: 12px;
+    }
+    
+    .caption-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .caption-desc {
+        font-size: 12px;
+        margin-bottom: 10px;
+        -webkit-line-clamp: 2;
+    }
+    
+    .image-badge {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+    
+    .tag {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-card {
+        width: 200px;
+        height: 260px;
+    }
+    
+    .card-image {
+        height: 140px;
+    }
+    
+    .card-caption {
+        height: 120px;
+    }
+    
+    .case-study-note {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-card {
+        width: 180px;
+        height: 240px;
+    }
+    
+    .card-image {
+        height: 130px;
+    }
+    
+    .card-caption {
+        height: 110px;
+        padding: 10px;
+    }
+    
+    .caption-title {
+        font-size: 13px;
+    }
+    
+    .caption-desc {
+        font-size: 11px;
+        -webkit-line-clamp: 2;
+    }
+}
+
+/* টাচ ফ্রেন্ডলি স্টাইল */
+.gallery-card {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* কার্ড সিলেকশন ইফেক্ট */
+.gallery-card:focus {
+    outline: 2px solid #1976D2;
+    outline-offset: 2px;
 }
