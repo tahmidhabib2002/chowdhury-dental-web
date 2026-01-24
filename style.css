@@ -143,6 +143,7 @@ p {
     animation: shake 3s infinite;
 }
 
+
 @keyframes shake {
     0%, 100% { transform: rotate(0deg); }
     10%, 30% { transform: rotate(-10deg); }
@@ -2432,6 +2433,10 @@ p {
 .wa { background: #25D366; }
 .yt { background: #FF0000; }
 .ins { background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C); }
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+
+
 
 /* =========================================
    FOOTER STYLES
@@ -2672,7 +2677,6 @@ p {
     color: #FFC107;
     font-weight: 700;
 }
-
 /* =========================================
    SCROLL TO TOP BUTTON
    ========================================= */
