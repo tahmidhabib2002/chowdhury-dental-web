@@ -243,3 +243,88 @@ ul { list-style: none; }
     .call-btn { width: 60px; height: 60px; font-size: 24px; }
     .cta-section { border-radius: 0; }
 }
+/* =========================
+   DOCTORS PAGE MOBILE FIX
+   ========================= */
+
+@media (max-width: 992px) {
+    .doctor-card-pro {
+        gap: 30px;
+        padding: 20px;
+    }
+    
+    .doc-image-frame {
+        width: 300px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* কার্ডটিকে উপরে-নিচে সাজানো */
+    .doctor-card-pro, 
+    .doctor-card-pro.reverse {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 25px;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+
+    /* ইমেজের সাইজ মোবাইল অনুযায়ী অটো অ্যাডজাস্ট */
+    .doc-image-frame {
+        width: 100% !important;
+        height: 320px !important;
+        max-width: 320px;
+    }
+
+    .doc-details h3 {
+        font-size: 1.8rem !important;
+    }
+
+    /* বাটনগুলো এক লাইনে সুন্দর না দেখালে নিচে নিচে নিয়ে আসা */
+    .doc-buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .btn-call-doc, .btn-book-doc {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 20px !important;
+    }
+
+    .exp-badge {
+        font-size: 11px;
+        padding: 6px 12px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header-section h1 {
+        font-size: 2rem !important;
+    }
+
+    .doc-image-frame {
+        height: 280px !important;
+    }
+
+    .doc-bio {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    /* কোয়ালিফিকেশন ব্যাজগুলো যেন ভেঙে না যায় */
+    .qualifications-list {
+        gap: 5px;
+    }
+
+    .q-badge {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+}

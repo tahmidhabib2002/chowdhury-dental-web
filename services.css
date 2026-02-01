@@ -230,3 +230,79 @@ ul { list-style: none; }
     .floating-container { bottom: 20px; right: 20px; }
     .call-btn { width: 60px; height: 60px; font-size: 24px; }
 }
+/* =========================
+   SERVICES PAGE MOBILE FIX
+   ========================= */
+
+@media (max-width: 992px) {
+    .service-content-box {
+        grid-template-columns: 1fr; /* ২ কলাম থেকে ১ কলামে আনা */
+        padding: 30px;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* ট্যাবগুলো মোবাইলে পাশাপাশি স্ক্রলযোগ্য করা */
+    .service-tabs-wrapper {
+        justify-content: flex-start;
+        overflow-x: auto; /* ডানে-বামে স্ক্রল হবে */
+        white-space: nowrap;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .s-tab {
+        flex: 0 0 auto; /* ট্যাবগুলো চ্যাপ্টা হবে না */
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .s-details h2 {
+        font-size: 1.8rem !important;
+        text-align: center;
+    }
+
+    .s-meta {
+        order: -1; /* প্রাইস বক্সটি মোবাইলে উপরে দেখাবে */
+        margin-bottom: 10px;
+        padding: 20px;
+    }
+
+    .meta-box h3 {
+        font-size: 1.5rem !important;
+    }
+
+    /* প্যাকেজ কার্ডগুলো ঠিক করা */
+    .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 10px;
+    }
+
+    .package-card.popular {
+        transform: scale(1); /* মোবাইলে জুম কমিয়ে দেওয়া */
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header-section h1 {
+        font-size: 2rem !important;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem;
+    }
+
+    /* ফুটারের ঠিকানা কেটে যাওয়ার সমস্যা সমাধান */
+    .footer-contact li {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}

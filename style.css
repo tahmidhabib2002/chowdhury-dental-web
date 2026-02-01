@@ -1032,6 +1032,11 @@ p {
     z-index: 2;
     animation: pulseBadge 2s infinite;
 }
+@media (max-width: 768px) {
+    .doctor-badge {
+        display: none !important;
+    }
+}
 
 .doctor-badge.new {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -1316,6 +1321,43 @@ p {
     gap: 25px;
 }
 
+@media (max-width: 768px) {
+    .contact-item {
+        flex-direction: column; /* আইকন এবং টেক্সট উপরে নিচে আসবে */
+        align-items: center;
+        text-align: center;
+        padding: 20px 15px !important;
+        width: 100%;
+        overflow: hidden; /* টেক্সট যেন বাইরে না যায় */
+    }
+
+    .contact-item i {
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+
+    .contact-item p {
+        font-size: 14px;
+        word-wrap: break-word; /* লম্বা ঠিকানা ভেঙে লাইনে আসবে */
+        line-height: 1.5;
+        max-width: 100%;
+    }
+    
+    .contact-content {
+        padding: 0 10px;
+    }
+}
+
+/* অতি ক্ষুদ্র স্ক্রিনের জন্য (যেমন iPhone SE) */
+@media (max-width: 380px) {
+    .contact-item h3 {
+        font-size: 17px;
+    }
+    
+    .contact-item p {
+        font-size: 13px;
+    }
+}
 .contact-item {
     display: flex;
     align-items: flex-start;
@@ -1939,3 +1981,5 @@ p {
         font-size: 16px !important; 
     }
 }
+
+

@@ -151,7 +151,8 @@ ul { list-style: none; }
 /* Stats */
 .stats-section { padding: 70px 0; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; margin-top: 50px; }
 .stats-container { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; }
-.stat-box h2 { color: #fff; font-size: 3.5rem; margin: 0; }
+.stat-box h2 { color: #fff; font-size: 2rem !important; /* সংখ্যাগুলো একটু ছোট করা */
+    }
 .stat-box p { font-size: 1.1rem; opacity: 0.9; margin-top: 5px; }
 
 
@@ -470,7 +471,12 @@ ul { list-style: none; }
     .about-text h2 { font-size: 2rem; }
     .exp-box { left: 20px; bottom: -20px; }
     .mission-grid { grid-template-columns: 1fr; }
-    .stats-container { grid-template-columns: 1fr 1fr; gap: 30px; }
+   @media (max-width: 576px) {
+    .stats-container {
+        grid-template-columns: 1fr 1fr !important; /* ২ কলামে সুন্দর দেখাবে */
+        gap: 20px !important;
+        padding: 0 10px !important;
+    }
     
     /* Footer Mobile Fix */
     .footer-pro { margin-top: 60px; }
@@ -481,4 +487,39 @@ ul { list-style: none; }
     
     .floating-container { bottom: 20px; right: 20px; }
     .call-btn { width: 60px; height: 60px; font-size: 24px; }
+}
+/* কন্টাক্ট সেকশন রেসপন্সিভ ফিক্স */
+@media (max-width: 768px) {
+    .contact-item {
+        display: flex !important;
+        flex-direction: column !important; /* আইকন উপরে এবং টেক্সট নিচে */
+        align-items: center !important;
+        text-align: center !important;
+        padding: 20px 15px !important;
+        width: 100% !important;
+        min-height: auto !important;
+    }
+
+    .contact-item i {
+        margin-right: 0 !important;
+        margin-bottom: 15px !important;
+        font-size: 24px !important;
+    }
+
+    .contact-item div {
+        width: 100% !important;
+    }
+
+    .contact-item h3 {
+        font-size: 18px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .contact-item p, 
+    .contact-item a {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        word-wrap: break-word !important; /* লম্বা ঠিকানা ভেঙে যাবে */
+        white-space: normal !important; /* লেখা এক লাইনে থাকার চেষ্টা করবে না */
+    }
 }
