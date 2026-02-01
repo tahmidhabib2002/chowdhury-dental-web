@@ -1,42 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     
+    <!-- Homepage - Highest Priority -->
     <url>
-        <loc>https://chowdhurydental.online/</loc>
-        <lastmod>2025-01-20</lastmod>
+        <loc>https://chowdhurydental.com.bd/</loc>
+        <lastmod>2024-01-20</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="bn" href="https://chowdhurydental.online/" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://chowdhurydental.online/" />
+        <xhtml:link rel="alternate" hreflang="bn" href="https://chowdhurydental.com.bd/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://chowdhurydental.com.bd/en/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chowdhurydental.com.bd/" />
     </url>
     
+    <!-- About Page -->
     <url>
-        <loc>https://chowdhurydental.online/#about</loc>
-        <lastmod>2025-01-20</lastmod>
+        <loc>https://chowdhurydental.com.bd/about.html</loc>
+        <lastmod>2024-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Doctors Page -->
+    <url>
+        <loc>https://chowdhurydental.com.bd/doctors.html</loc>
+        <lastmod>2024-01-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
+    <!-- Services Page -->
     <url>
-        <loc>https://chowdhurydental.online/#doctors</loc>
-        <lastmod>2025-01-20</lastmod>
+        <loc>https://chowdhurydental.com.bd/services.html</loc>
+        <lastmod>2024-01-17</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
+    <!-- Services Subpages -->
     <url>
-        <loc>https://chowdhurydental.online/#services</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
+        <loc>https://chowdhurydental.com.bd/services.html#general</loc>
+        <lastmod>2024-01-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://chowdhurydental.com.bd/services.html#crown</loc>
+        <lastmod>2024-01-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://chowdhurydental.com.bd/services.html#root-canal</loc>
+        <lastmod>2024-01-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://chowdhurydental.com.bd/services.html#whitening</loc>
+        <lastmod>2024-01-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://chowdhurydental.com.bd/services.html#braces</loc>
+        <lastmod>2024-01-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://chowdhurydental.com.bd/services.html#surgery</loc>
+        <lastmod>2024-01-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     
+    <!-- Case Studies -->
     <url>
-        <loc>https://chowdhurydental.online/#contact</loc>
-        <lastmod>2025-01-20</lastmod>
+        <loc>https://chowdhurydental.com.bd/cases.html</loc>
+        <lastmod>2024-01-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Contact Page -->
+    <url>
+        <loc>https://chowdhurydental.com.bd/contact.html</loc>
+        <lastmod>2024-01-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
+    <!-- Blog/News Pages -->
+    <url>
+        <loc>https://chowdhurydental.com.bd/blog.html</loc>
+        <lastmod>2024-01-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://chowdhurydental.com.bd/privacy.html</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+    <!-- Terms and Conditions -->
+    <url>
+        <loc>https://chowdhurydental.com.bd/terms.html</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
 </urlset>

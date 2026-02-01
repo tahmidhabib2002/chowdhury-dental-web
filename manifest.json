@@ -1,0 +1,83 @@
+{
+    "name": "Chowdhury Dental",
+    "short_name": "ChowdhuryDental",
+    "description": "লালমোহন ও ভোলা জেলার সেরা ডেন্টাল ক্লিনিক। ৩০+ বছরের অভিজ্ঞতা, আধুনিক প্রযুক্তি, ব্যথামুক্ত চিকিৎসা।",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#1976D2",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "https://i.postimg.cc/Bn20D0T6/young-female-patient-visiting-dentist-office.jpg",
+            "sizes": "1280x720",
+            "type": "image/jpeg",
+            "form_factor": "wide",
+            "label": "Chowdhury Dental Homepage"
+        }
+    ],
+    "categories": ["medical", "health"],
+    "lang": "bn-BD",
+    "dir": "ltr",
+    "prefer_related_applications": false,
+    "related_applications": [],
+    "scope": "/",
+    "shortcuts": [
+        {
+            "name": "অ্যাপয়েন্টমেন্ট",
+            "short_name": "Appointment",
+            "description": "একটি নতুন অ্যাপয়েন্টমেন্ট বুক করুন",
+            "url": "/contact.html?source=pwa",
+            "icons": [{ "src": "/icon-appt.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "সেবাসমূহ",
+            "short_name": "Services",
+            "description": "আমাদের ডেন্টাল সেবাগুলো দেখুন",
+            "url": "/services.html?source=pwa",
+            "icons": [{ "src": "/icon-services.png", "sizes": "192x192" }]
+        }
+    ]
+}
