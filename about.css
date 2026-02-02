@@ -111,7 +111,7 @@ ul { list-style: none; }
    3. ABOUT PAGE HERO
    ========================= */
 .page-header-section {
-    background: linear-gradient(rgba(13,33,55,0.9), rgba(13,33,55,0.8)), url('https://i.postimg.cc/Bn20D0T6/young-female-patient-visiting-dentist-office.jpg');
+    background: linear-gradient(rgba(13,33,55,0.9), rgba(13,33,55,0.8)), url('img/young-female-patient-visiting-dentist-office.jpg');
     background-size: cover;
     background-position: center;
     padding: 100px 0;

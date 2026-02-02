@@ -860,7 +860,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "name": "Chowdhury Dental",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://i.postimg.cc/VLJxgyCj/20250603-131632-0000.png"
+                    "url": "img/Chowdhury Dental Logo.png"
                 }
             }
         };

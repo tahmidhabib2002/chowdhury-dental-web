@@ -78,7 +78,7 @@ ul { list-style: none; }
    3. DOCTORS PAGE SPECIFIC STYLES
    ========================= */
 .page-header-section {
-    background: linear-gradient(rgba(13,33,55,0.9), rgba(13,33,55,0.8)), url('https://i.postimg.cc/Bn20D0T6/young-female-patient-visiting-dentist-office.jpg');
+    background: linear-gradient(rgba(13,33,55,0.9), rgba(13,33,55,0.8)), url('img/young-female-patient-visiting-dentist-office.jpg');
     background-size: cover;
     background-position: center;
     padding: 100px 0;
@@ -326,5 +326,54 @@ ul { list-style: none; }
     .q-badge {
         font-size: 12px;
         padding: 4px 8px;
+    }
+}
+/* =========================
+   MOBILE FIX FOR DOCTOR IMAGES
+   ========================= */
+
+@media (max-width: 768px) {
+    /* কার্ডের লেআউট ঠিক করা */
+    .doctor-card-pro, 
+    .doctor-card-pro.reverse {
+        flex-direction: column !important;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* ইমেজ ফ্রেমের ফিক্সড হাইট সরিয়ে অটো করা যেন ছবি না কাটে */
+    .doc-image-frame {
+        width: 100% !important;
+        max-width: 280px; /* মোবাইল স্ক্রিনে ছবির সর্বোচ্চ চওড়া */
+        height: auto !important; /* হাইট অটো করা হলো যেন ছবি চ্যাপ্টা বা কেটে না যায় */
+        margin: 0 auto;
+        border-radius: 15px;
+        overflow: hidden;
+        aspect-ratio: auto; /* রেশিও লক ছেড়ে দেওয়া হলো */
+    }
+
+    .doc-image-frame img {
+        width: 100%;
+        height: auto !important;
+        object-fit: contain; /* ছবি পুরোপুরি ফ্রেমের ভেতর থাকবে, কাটবে না */
+        display: block;
+    }
+
+    /* এক্সপেরিয়েন্স ব্যাজের পজিশন ঠিক করা */
+    .exp-badge {
+        font-size: 11px;
+        padding: 5px 10px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .doc-image-frame {
+        max-width: 240px; /* আরও ছোট স্ক্রিনের জন্য সাইজ কিছুটা কমানো */
+    }
+    
+    .doc-details h3 {
+        font-size: 1.6rem !important;
     }
 }
